@@ -1,4 +1,5 @@
 # Breathing Autosolitons in an Activator–Wave-Field System
+![Breathing Autosoliton](protoGliders and search_engine/preview_singleSpot.gif)
 
 Simulation and analysis code for the paper
 
