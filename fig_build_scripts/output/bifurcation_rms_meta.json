@@ -1,0 +1,9 @@
+{
+  "tail_t0": 240.0,
+  "amplitude_definition": "A_rms = sqrt(<(phi_c - <phi_c>)^2>) on tail t in [240,400]",
+  "tracks_found": 10,
+  "rows_written": 10,
+  "breathing_points": 6,
+  "collapse_points": 4,
+  "boundary_eps": 3.75
+}

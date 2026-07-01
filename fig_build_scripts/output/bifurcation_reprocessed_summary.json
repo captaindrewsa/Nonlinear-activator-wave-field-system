@@ -1,0 +1,10 @@
+{
+  "tracks_found": 10,
+  "rows_written": 10,
+  "breathing_points": 6,
+  "tail_t0": 240.0,
+  "amp_definition": "median half-range over individual peak-to-peak cycles on tail",
+  "period_definition": "median peak-to-peak period on tail",
+  "peak_sharpness_min": 5.0,
+  "min_cycles": 3
+}

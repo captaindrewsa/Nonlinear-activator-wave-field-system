@@ -1,0 +1,36 @@
+{
+  "eps_list": [
+    2.0,
+    2.5,
+    2.8,
+    3.0,
+    3.2,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    6.0
+  ],
+  "h_fixed": 0.533,
+  "dt": 0.001,
+  "T_total": 400.0,
+  "tail_interval": [
+    240.0,
+    400.0
+  ],
+  "nx": 64,
+  "ny": 64,
+  "radius": 8,
+  "generated_tracks": [
+    "output\\track_eps2_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps2p5_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps2p8_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps3_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps3p2_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps3p5_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps4_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps4p5_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps5_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv",
+    "output\\track_eps6_h0p533_d18_ph0_dy0_k0p06_v_aa0_ra0.csv"
+  ]
+}

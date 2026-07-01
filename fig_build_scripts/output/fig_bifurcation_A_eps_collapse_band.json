@@ -1,0 +1,7 @@
+{
+  "source_csv": "output\\bifurcation_reprocessed.csv",
+  "boundary_eps": 3.75,
+  "breathing_points": 6,
+  "collapse_points": 4,
+  "note": "Breathing amplitudes plotted in red; collapse/nonbreathing region shown as gray band to the right of inferred boundary."
+}
