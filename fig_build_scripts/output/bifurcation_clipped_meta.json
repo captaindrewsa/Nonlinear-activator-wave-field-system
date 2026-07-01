@@ -1,9 +1,0 @@
-{
-  "source_csv": "output\\bifurcation_reprocessed.csv",
-  "phi_lo": 0.533,
-  "phi_hi": 3.977,
-  "amplitude_definition": "A = min(phi_hi, tail_max) - max(phi_lo, tail_min), clipped at zero",
-  "boundary_eps": 3.75,
-  "breathing_points": 6,
-  "collapse_points": 4
-}
