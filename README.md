@@ -1,5 +1,5 @@
 # Breathing Autosolitons in an Activator–Wave-Field System
-![Breathing Autosoliton](https://github.com/captaindrewsa/Nonlinear-activator-wave-field-system/blob/ac4fb4835d8330cdab220dc549c18fd869204f9e/protoGliders_and_search_engine/preview_singleSpot.gif)
+![Breathing Autosoliton](./protoGliders_and_search_engine/preview_singleSpot.gif)
 
 Simulation and analysis code for the paper
 
