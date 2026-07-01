@@ -3,15 +3,9 @@
 Simulation and analysis code for the paper
 
 > **Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system**
-<<<<<<< HEAD
-> A. A. Vlasov, Kaliningrad, Russia.
-
-This repository contains the numerical integrators and post-processing scripts used to produce the figures, phase diagram, and bifurcation data in the paper (`Breathing Autosolitons in an Activator–Wave-Field System`).
-=======
 > A. A. Vlasov, Kaliningrad, Russia.
 
 This repository contains the numerical integrators and post-processing scripts used to produce the figures, phase diagram, and bifurcation data in the paper (`Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system`).
->>>>>>> fecee9d4b8e20b95b3510958ba705896adce9f0d
 
 > **Note on formulas.** This README uses MathJax/LaTeX math. It renders on any MathJax-enabled viewer (e.g. GitHub Pages with MathJax, JupyterLab, VS Code Markdown+Math). GitHub's default Markdown renderer also supports `$...$` and `$$...$$` math.
 
