@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org)](https://doi.org/10.5281/zenodo.21104198)
 # Breathing Autosolitons in an Activator–Wave-Field System
 ![Breathing Autosoliton](./protoGliders_and_search_engine/preview_singleSpot.gif)
 
