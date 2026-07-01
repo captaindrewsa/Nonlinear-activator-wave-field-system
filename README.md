@@ -4,9 +4,9 @@ Simulation and analysis code for the paper
 
 > **Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system**
 <<<<<<< HEAD
-> A. A. Vlasov, Immanuel Kant Baltic Federal University, Kaliningrad, Russia.
+> A. A. Vlasov, Kaliningrad, Russia.
 
-This repository contains the numerical integrators and post-processing scripts used to produce the figures, phase diagram, and bifurcation data in the paper (`autosoliton_paper_full_v3.pdf`).
+This repository contains the numerical integrators and post-processing scripts used to produce the figures, phase diagram, and bifurcation data in the paper (`Breathing Autosolitons in an Activator–Wave-Field System`).
 =======
 > A. A. Vlasov, Kaliningrad, Russia.
 
@@ -214,7 +214,7 @@ python glider_search_v22_windows.py
 If you use this code, please cite the accompanying paper:
 
 <<<<<<< HEAD
-> A. A. Vlasov, *Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system*, Immanuel Kant Baltic Federal University.
+> A. A. Vlasov, *Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system*.
 =======
 > A. A. Vlasov, *Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system*.
 >>>>>>> fecee9d4b8e20b95b3510958ba705896adce9f0d
