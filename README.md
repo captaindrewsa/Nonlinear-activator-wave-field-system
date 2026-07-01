@@ -192,11 +192,7 @@ python glider_search_v22_windows.py
 ## Notes and limitations
 
 - The explicit Euler scheme is constrained by the wave-equation stability limit; large $D_\psi$ would require a semi-implicit or operator-splitting method.
-<<<<<<< HEAD
 - No stationary autosoliton ($\text{regime\_code} = 1$) is found for the radial-spot initial condition; whether one exists under a different initial condition remains open.
-=======
-- No stationary autosoliton ($\text{regime\code} = 1$) is found for the radial-spot initial condition; whether one exists under a different initial condition remains open.
->>>>>>> fecee9d4b8e20b95b3510958ba705896adce9f0d
 - Glider-like drift is currently observed on $48 \times 48$ grids and awaits confirmation on larger grids.
 - `reprocess_bifurcation_with_collapse_band.py` consumes the aggregated `bifurcation_reprocessed.csv`; this file is produced by `reprocess_bifurcation_cycle_median.py`, which must be run first.
 - `reprocess_bifurcation_cycle_median.py` writes only the aggregated CSVs/JSON summaries; the `fig_bifurcation_A_eps_reprocessed.*` and `fig_bifurcation_A_eps_clipped.*` figure variants are rendered from those CSVs by `plot_bifurcation_reprocessed.py`.
@@ -206,9 +202,4 @@ python glider_search_v22_windows.py
 ## Citation
 
 If you use this code, please cite the accompanying paper:
-
-<<<<<<< HEAD
 > A. A. Vlasov, *Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system*.
-=======
-> A. A. Vlasov, *Wave inhibition and breathing autosolitons in a nonlinear activator–wave-field system*.
->>>>>>> fecee9d4b8e20b95b3510958ba705896adce9f0d
