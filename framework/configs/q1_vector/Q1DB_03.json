@@ -1,0 +1,73 @@
+{
+  "eps": 1.83,
+  "h_bg": 0.6,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 256,
+  "ny": 256,
+  "dx": 1.0,
+  "boundary": "periodic",
+  "dt": 0.002,
+  "t_total": 1000.0,
+  "attractors": [
+    {
+      "kind": "pump",
+      "cx": 128.0,
+      "cy": 128.0,
+      "strength": 0.094,
+      "sigma": 12.0,
+      "profile": "gaussian",
+      "ring_r": 0.0,
+      "ring_w": 0.0
+    },
+    {
+      "kind": "h_sink",
+      "cx": 128.0,
+      "cy": 128.0,
+      "strength": 0.03,
+      "sigma": 12.0,
+      "profile": "ring",
+      "ring_r": 26.0,
+      "ring_w": 6.0
+    }
+  ],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [],
+    "noise_amplitude": 0.092,
+    "noise_seed": 202,
+    "noise_lowpass": 0.27,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 1500,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": false,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": "models/q1_vector_diagonal_serial_b",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+  "run_id": "Q1DB_03",
+  "tags": [
+    "q1",
+    "diagonal_scan_b",
+    "ring_hsink",
+    "eps_1p83",
+    "pump_0p094",
+    "noise_0p092",
+    "lp_0p27"
+  ]
+}

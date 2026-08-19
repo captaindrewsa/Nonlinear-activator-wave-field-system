@@ -1,0 +1,70 @@
+{
+  "eps": 2.2,
+  "h_bg": 0.6,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+
+  "nx": 384,
+  "ny": 384,
+  "dx": 1.0,
+  "boundary": "periodic",
+
+  "dt": 0.002,
+  "t_total": 1600.0,
+
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 184.0,
+        "cy": 192.0,
+        "radius": 8.0,
+        "amp": 3.9766096853487105,
+        "shape": "disk",
+        "phase_v": 0.0
+      },
+      {
+        "cx": 200.0,
+        "cy": 192.0,
+        "radius": 8.0,
+        "amp": 3.9766096853487105,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.04,
+    "noise_seed": 17,
+    "noise_lowpass": 0.18,
+    "phi_background": 0.533
+  },
+
+  "snap": {
+    "every_steps": 3000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": false,
+    "max_snaps": 320,
+    "labels_save": []
+  },
+
+  "out_dir": ".\\models\\config_noise_two_seeds_safe",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+  "run_id": "long_run_prod",
+  "tags": [
+    "long",
+    "production",
+    "two_seeds",
+    "periodic",
+    "noise"
+  ]
+}

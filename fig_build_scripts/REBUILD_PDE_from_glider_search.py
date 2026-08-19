@@ -75,9 +75,9 @@ PHI_LO = 0.533
 PHI_HI = 3.9766096853487105
 DW = 0.0
 
-NX = 64
-NY = 64
-DX = 1.0
+NX = 128
+NY = 128
+DX = 0.5
 DT = 0.001
 T_TOTAL = 400.0
 RADIUS = 8
@@ -85,8 +85,10 @@ TAIL_T0 = 240.0
 BREATHING_MIN_AMP = 0.15
 PEAK_THRESHOLD = 1.5
 
-EPS_LIST = [2.0, 2.5, 2.8, 3.0, 3.2, 3.5, 4.0, 4.5, 5.0, 6.0]
+EPS_LIST = [2.8]
 H_FIXED = 0.533
+
+
 
 OUT = 'output'
 os.makedirs(OUT, exist_ok=True)
@@ -322,7 +324,7 @@ def make_phase_figure(times, signal):
     idx0 = np.argmax(mask)
     plt.scatter([signal[idx0]], [dphi[idx0]], s=28, color='black', zorder=3)
     plt.xlabel(r'$\phi_c$')
-    plt.ylabel(r'$\dot{\phi}_c$')
+    plt.ylabel(r'\partial_t \phi_c')
     plt.title('Phase portrait')
     plt.tight_layout()
     plt.savefig(os.path.join(OUT, 'phase_portrait_eps3_fixed.png'), dpi=220)
@@ -331,7 +333,19 @@ def make_phase_figure(times, signal):
 
 
 def main():
-    params_list = [CaseParams(eps=e) for e in EPS_LIST]
+    params_list = [
+    CaseParams(
+        eps=2.8,
+        h=0.533,
+        dist=18,
+        phase_shift=0.0,
+        dy=0,
+        kick=0.06,
+        kick_type='v',
+        amp_asym=0.15,
+        rad_asym=0
+    )
+]
     results = []
     for p in params_list:
         results.append(run_case(p, save_space_time=(abs(p.eps - 3.0) < 1e-12)))

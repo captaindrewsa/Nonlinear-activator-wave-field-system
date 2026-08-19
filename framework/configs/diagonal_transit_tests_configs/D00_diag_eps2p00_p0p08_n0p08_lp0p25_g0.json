@@ -1,0 +1,61 @@
+{
+  "eps": 2.0,
+  "h_bg": 0.6,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "nx": 256,
+  "ny": 256,
+  "dx": 1.0,
+  "boundary": "periodic",
+  "dt": 0.002,
+  "t_total": 500.0,
+  "attractors": [
+    {
+      "kind": "pump",
+      "cx": 128.0,
+      "cy": 128.0,
+      "strength": 0.08,
+      "sigma": 12.0,
+      "profile": "gaussian",
+      "ring_r": 0.0,
+      "ring_w": 0.0
+    }
+  ],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [],
+    "noise_amplitude": 0.08,
+    "noise_seed": 202,
+    "noise_lowpass": 0.25,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 1500,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": false,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": "models/diagonal_transit_tests",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+  "run_id": "D00_diag_eps2p00_p0p08_n0p08_lp0p25_g0",
+  "tags": [
+    "diag",
+    "D00",
+    "transit_tests",
+    "eps_2.00",
+    "pump_0.08",
+    "noise_0.08",
+    "lp_0.25",
+    "gamma_0.00"
+  ]
+}

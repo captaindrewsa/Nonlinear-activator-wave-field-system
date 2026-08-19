@@ -1,0 +1,70 @@
+{
+  "eps": 1.8,
+  "h_bg": 0.6,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "nx": 256,
+  "ny": 256,
+  "dx": 1.0,
+  "boundary": "periodic",
+  "dt": 0.002,
+  "t_total": 2000.0,
+  "attractors": [
+    {
+      "kind": "pump",
+      "cx": 104.0,
+      "cy": 128.0,
+      "strength": 0.10,
+      "sigma": 13.0,
+      "profile": "gaussian",
+      "ring_r": 0.0,
+      "ring_w": 0.0
+    },
+    {
+      "kind": "pump",
+      "cx": 152.0,
+      "cy": 128.0,
+      "strength": 0.10,
+      "sigma": 13.0,
+      "profile": "gaussian",
+      "ring_r": 0.0,
+      "ring_w": 0.0
+    }
+  ],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [],
+    "noise_amplitude": 0.10,
+    "noise_seed": 202,
+    "noise_lowpass": 0.30,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 1500,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": false,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": "models/self-emergent-search2",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+  "run_id": "M3_twopump_s0p10_eps1p8_noise0p10_lp0p30_seed202",
+  "tags": [
+    "M3",
+    "self_emergent",
+    "two_pumps",
+    "search2",
+    "eps_1.8",
+    "pump_0.10",
+    "noise_0.10"
+  ]
+}
