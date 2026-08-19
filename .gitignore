@@ -1,1 +1,6 @@
-**/models/
+*.zip
+*.pdf
+**/models/**/*.npz
+**/models/**/*.npy
+**/models/**/*.png
+**/models/**/*.csv
