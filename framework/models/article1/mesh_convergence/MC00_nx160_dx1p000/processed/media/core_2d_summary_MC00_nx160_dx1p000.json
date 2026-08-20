@@ -1,0 +1,17 @@
+{
+  "run_id": "MC00_nx160_dx1p000",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article\\mesh_convergence\\MC00_nx160_dx1p000",
+  "n_frames": 268,
+  "t_min": 0.0,
+  "t_max": 800.0,
+  "area_mean": 7.246268656716418,
+  "area_max": 209.0,
+  "r_eff_mean": 1.2940905636681885,
+  "phi_core_max": 5.776194095611572,
+  "phi_global_max": 6.309737205505371,
+  "n_components_max": 201,
+  "source_counts": {
+    "threshold": 268,
+    "fallback-max": 0
+  }
+}
