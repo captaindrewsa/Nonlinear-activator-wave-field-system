@@ -4,3 +4,4 @@
 **/models/**/*.npy
 **/models/**/*.png
 **/models/**/*.csv
+**/models/**/*.jsonl
