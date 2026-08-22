@@ -7,11 +7,11 @@
   "kappa": 10.0,
   "theta1": 4.0,
   "theta2": 16.0,
-  "nx": 240,
-  "ny": 240,
-  "dx": 0.6666666667,
+  "nx": 320,
+  "ny": 320,
+  "dx": 0.5,
   "boundary": "periodic",
-  "dt": 0.0015,
+  "dt": 0.000375,
   "t_total": 800.0,
   "attractors": [],
   "gamma_bg": 0.0,
@@ -20,7 +20,7 @@
   "init": {
     "npz_path": null,
     "spots": [
-      {"cx": 120.0, "cy": 120.0, "radius": 12.0, "amp": null, "shape": "disk", "phase_v": 0.0}
+      {"cx": 160.0, "cy": 160.0, "radius": 16.0, "amp": null, "shape": "disk", "phase_v": 0.0}
     ],
     "noise_amplitude": 0.0,
     "noise_seed": 202,
@@ -28,7 +28,7 @@
     "phi_background": null
   },
   "snap": {
-    "every_steps": 3000,
+    "every_steps": 4000,
     "t_start": 0.0,
     "t_stop": -1.0,
     "save_phi": true,
@@ -38,9 +38,9 @@
     "labels_save": []
   },
   "out_dir": ".\\models\\article1\\mesh_convergence\\",
-  "monitor_every": 8,
+  "monitor_every": 10,
   "t_warm": 0.0,
   "seed_n_snaps": 16,
-  "run_id": "MC01_nx240_dx0p667",
-  "tags": ["mesh_convergence", "MC01", "nx240"]
+  "run_id": "MC02R_nx320_dx0p500",
+  "tags": ["mesh_convergence", "MC02R", "nx320", "cfl_fixed"]
 }

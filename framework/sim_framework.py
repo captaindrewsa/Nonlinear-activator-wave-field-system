@@ -599,7 +599,8 @@ class Simulator:
 
             if n % cfg.monitor_every == 0:
                 phi_np = phi.detach().cpu().numpy()
-                self._record_track(n, t_now, phi_np, psi)
+                psi_np = psi.detach().cpu().numpy()
+                self._record_track(n, t_now, phi_np, psi_np)
 
             if (step_ss <= n <= step_se
                     and n % sp.every_steps == 0
