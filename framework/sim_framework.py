@@ -285,6 +285,11 @@ class SimConfig:
             json.loads(Path(path).read_text(encoding="utf-8"))
         )
 
+    @staticmethod
+    def suggest_dt(dx: float, dx_ref: float = 1.0, dt_ref: float = 0.0015) -> float:
+        """dt ~ dx^2 масштабирование для устойчивости диффузионного/лапласиан-члена."""
+        return dt_ref * (dx / dx_ref) ** 2
+
 
 # =============================================================================
 # III.  PDE HELPERS
@@ -562,7 +567,7 @@ class Simulator:
         self.stepper = Stepper(cfg, self.h_field, self.gamma_field)
 
         self._hooks: List[Tuple[int, Callable]] = []
-        self._track: Dict[str, List] = {"t": [], "mass": [], "phi_center": [],
+        self._track: Dict[str, List] = {"step": [], "t": [], "mass": [], "phi_center": [],
                                         "cx": [], "cy": []}
         self._n_snaps = 0
         self.result: Optional[Dict] = None
@@ -594,7 +599,7 @@ class Simulator:
 
             if n % cfg.monitor_every == 0:
                 phi_np = phi.detach().cpu().numpy()
-                self._record_track(t_now, phi_np)
+                self._record_track(n, t_now, phi_np, psi)
 
             if (step_ss <= n <= step_se
                     and n % sp.every_steps == 0
@@ -630,13 +635,17 @@ class Simulator:
         logger.info(f"[{self.run_id}] Done in {wall:.1f}s | snaps={self._n_snaps}")
         return self.result
 
-    def _record_track(self, t: float, phi_np: np.ndarray) -> None:
+    def _record_track(self, step: int, t: float, phi_np: np.ndarray, psi_np: np.ndarray = None) -> None:
         thresh = 1.5
         mask   = phi_np > thresh
         mass   = int(mask.sum())
+        self._track["step"].append(step)
         self._track["t"].append(t)
         self._track["mass"].append(mass)
         self._track["phi_center"].append(float(phi_np[self.cfg.nx//2, self.cfg.ny//2]))
+        self._track.setdefault("phi_max", []).append(float(np.abs(phi_np).max()))
+        if psi_np is not None:
+            self._track.setdefault("psi_max_abs", []).append(float(np.abs(psi_np).max()))
         if mass >= 20:
             coords = np.argwhere(mask)
             w  = phi_np[mask] - thresh

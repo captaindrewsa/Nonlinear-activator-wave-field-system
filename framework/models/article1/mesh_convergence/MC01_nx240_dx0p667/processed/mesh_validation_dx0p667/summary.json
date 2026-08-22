@@ -1,0 +1,42 @@
+{
+  "run_id": "MC01_nx240_dx0p667",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\mesh_convergence\\MC01_nx240_dx0p667",
+  "analysis_name": "mesh_validation_dx0p667",
+  "n_snapshots": 179,
+  "t_min": 0.0,
+  "t_max": 800.0,
+  "grid": {
+    "nx": 240,
+    "ny": 240,
+    "dx": 0.667,
+    "dt_config": 0.0015,
+    "Lx": 160.08,
+    "Ly": 160.08
+  },
+  "observation_window": {
+    "t0": 240.0,
+    "t1": 400.0
+  },
+  "A_pp": 8959937.0,
+  "phi_max_window": 5347450.5,
+  "frequency": 0.05714285714285714,
+  "period": 17.5,
+  "r_fft": 1255.6030902148034,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {
+    "r_min": 41.702967583689265,
+    "r_max": 150.13068330128135,
+    "gamma": 0.1535766975629126,
+    "mu": 2.2552694811970575,
+    "zero_crossings": 100,
+    "envelope_peaks": 56,
+    "profile_time": 800.0
+  },
+  "threshold_sweep_rows": 27,
+  "two_spot_rows": 0
+}

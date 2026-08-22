@@ -1,0 +1,277 @@
+{
+  "analysis_name": "classical_proxy_control_validation",
+  "runs": [
+    {
+      "run_id": "A0_ref_eps2p8_h0p533_Dpsi0",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\A0_ref_eps2p8_h0p533_Dpsi0",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 10.743984699249268,
+      "phi_max_window": 5.847035884857178,
+      "frequency": 0.0380952380952381,
+      "period": 26.249999999999996,
+      "r_fft": 537.0952396612711,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "A1_eps4p0_h0p533_Dpsi0",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\A1_eps4p0_h0p533_Dpsi0",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.019087553024291992,
+      "phi_max_window": 0.5202256441116333,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 534717.0475727911,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "A2_eps6p0_h0p533_Dpsi0",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\A2_eps6p0_h0p533_Dpsi0",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.030777424573898315,
+      "phi_max_window": 0.5115931034088135,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 465505.193146783,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "A3_eps10p0_h0p533_Dpsi0",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\A3_eps10p0_h0p533_Dpsi0",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.05494406819343567,
+      "phi_max_window": 0.4911700487136841,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 587976.9455532762,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "B0_ref_eps2p8_h0p533_Dpsi0p2",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\B0_ref_eps2p8_h0p533_Dpsi0p2",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.008693993091583252,
+      "phi_max_window": 0.5274602770805359,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 372538.39276824443,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "B1_eps4p0_h0p533_Dpsi0p2",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\B1_eps4p0_h0p533_Dpsi0p2",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.01364368200302124,
+      "phi_max_window": 0.524118959903717,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 373173.7773898351,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "B2_eps6p0_h0p533_Dpsi0p2",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\B2_eps6p0_h0p533_Dpsi0p2",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.022455155849456787,
+      "phi_max_window": 0.5179567337036133,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 601582.3964411874,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "B3_eps10p0_h0p533_Dpsi0p2",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\classical_proxy_control\\B3_eps10p0_h0p533_Dpsi0p2",
+      "analysis_name": "classical_proxy_control_validation",
+      "n_snapshots": 224,
+      "t_min": 0.0,
+      "t_max": 1000.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 0.04238235950469971,
+      "phi_max_window": 0.5022292137145996,
+      "frequency": 0.006349206349206349,
+      "period": 157.5,
+      "r_fft": 515052.37839322374,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 0
+    }
+  ]
+}

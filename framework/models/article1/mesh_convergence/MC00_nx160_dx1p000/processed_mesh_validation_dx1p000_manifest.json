@@ -1,0 +1,39 @@
+{
+  "analysis_name": "mesh_validation_dx1p000",
+  "runs": [
+    {
+      "run_id": "MC00_nx160_dx1p000",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\mesh_convergence\\MC00_nx160_dx1p000",
+      "analysis_name": "mesh_validation_dx1p000",
+      "n_snapshots": 268,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": 10.743984699249268,
+      "phi_max_window": 5.847035884857178,
+      "frequency": 0.14814814814814814,
+      "period": 6.75,
+      "r_fft": 3475.226501815255,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 27,
+      "two_spot_rows": 0
+    }
+  ]
+}

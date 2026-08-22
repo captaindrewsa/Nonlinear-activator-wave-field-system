@@ -1,0 +1,209 @@
+{
+  "analysis_name": "init_robustness_late_validation",
+  "runs": [
+    {
+      "run_id": "IR00_disk_r8_noise0_seed202",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR00_disk_r8_noise0_seed202",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 10.317185401916504,
+      "phi_max_window": 5.5375447273254395,
+      "frequency": 0.017777777777777778,
+      "period": 56.25,
+      "r_fft": 98179.9431022184,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    },
+    {
+      "run_id": "IR01_disk_r6_noise0_seed202",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR01_disk_r6_noise0_seed202",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 8.188472747802734,
+      "phi_max_window": 4.214925765991211,
+      "frequency": 0.03111111111111111,
+      "period": 32.142857142857146,
+      "r_fft": 1035.6917084119802,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    },
+    {
+      "run_id": "IR02_disk_r10_noise0_seed202",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR02_disk_r10_noise0_seed202",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 11.33494234085083,
+      "phi_max_window": 6.316417694091797,
+      "frequency": 0.013333333333333332,
+      "period": 75.0,
+      "r_fft": 3509.876364679465,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    },
+    {
+      "run_id": "IR03_disk_r8_noise0p01_seed202",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR03_disk_r8_noise0p01_seed202",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 9.57039499282837,
+      "phi_max_window": 5.371815204620361,
+      "frequency": 0.022222222222222223,
+      "period": 45.0,
+      "r_fft": 516.9458585713495,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    },
+    {
+      "run_id": "IR04_disk_r8_noise0p01_seed303",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR04_disk_r8_noise0p01_seed303",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 10.339623928070068,
+      "phi_max_window": 5.545347213745117,
+      "frequency": 0.022222222222222223,
+      "period": 45.0,
+      "r_fft": 374.27206679846273,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    },
+    {
+      "run_id": "IR05_disk_r8_shifted_noise0_seed202",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\init_robustness\\IR05_disk_r8_shifted_noise0_seed202",
+      "analysis_name": "init_robustness_late_validation",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 360.0,
+        "t1": 800.0
+      },
+      "A_pp": 9.329909324645996,
+      "phi_max_window": 5.186946868896484,
+      "frequency": 0.017777777777777778,
+      "period": 56.25,
+      "r_fft": 16214.136345312567,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 81,
+      "two_spot_rows": 162
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "analysis_name": "mesh_validation_dx0p500",
+  "runs": [
+    {
+      "run_id": "MC02_nx320_dx0p500",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\mesh_convergence\\MC02_nx320_dx0p500",
+      "analysis_name": "mesh_validation_dx0p500",
+      "n_snapshots": 135,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 320,
+        "ny": 320,
+        "dx": 0.5,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 240.0,
+        "t1": 400.0
+      },
+      "A_pp": NaN,
+      "phi_max_window": NaN,
+      "frequency": 0.006172839506172839,
+      "period": 162.0,
+      "r_fft": NaN,
+      "regime_label": "weakly_modulated_or_unresolved",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 27,
+      "two_spot_rows": 0
+    }
+  ]
+}

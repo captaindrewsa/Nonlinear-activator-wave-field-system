@@ -1,0 +1,66 @@
+python analysis_validation.py `
+  --out-dir ".\models\article1\classical_proxy_control\" `
+  --analysis-name "classical_proxy_control_validation" `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep `
+  --sweep-collapse-offsets 0.20 0.30 0.40 `
+  --sweep-amplitude-thresholds 0.10 0.15 0.20 `
+  --sweep-fft-prominences 3 5 8 `
+  --extra-window 200,350 `
+  --extra-window 240,400
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\domain_size" `
+  --analysis-name "domain_size_validation" `
+  --dx 1.0 `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep `
+  --sweep-collapse-offsets 0.20 0.30 0.40 `
+  --sweep-amplitude-thresholds 0.10 0.15 0.20 `
+  --sweep-fft-prominences 3 5 8 `
+  --extra-window 200,350 `
+  --extra-window 240,400
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\init_robustness" `
+  --analysis-name "init_robustness_late_validation" `
+  --window-t0 360 `
+  --window-t1 800 `
+  --threshold-sweep `
+  --two-spot `
+  --extra-window 240,500 `
+  --extra-window 500,800
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\mesh_convergence\MC03_nx480_dx0p333" `
+  --analysis-name "mesh_validation_dx0p333" `
+  --dx 0.333 `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\mesh_convergence\MC02_nx320_dx0p500" `
+  --analysis-name "mesh_validation_dx0p500" `
+  --dx 0.50 `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\mesh_convergence\MC01_nx240_dx0p667" `
+  --analysis-name "mesh_validation_dx0p667" `
+  --dx 0.667 `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep
+
+python analysis_validation.py `
+  --out-dir ".\models\article1\mesh_convergence\MC00_nx160_dx1p000" `
+  --analysis-name "mesh_validation_dx1p000" `
+  --dx 1.00 `
+  --window-t0 240 `
+  --window-t1 400 `
+  --threshold-sweep

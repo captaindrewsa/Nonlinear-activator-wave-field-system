@@ -44,7 +44,7 @@
     "max_snaps": -1,
     "labels_save": []
   },
-  "out_dir": ".\\models\\article\\mesh_convergence\\",
+  "out_dir": ".\\models\\article1\\mesh_convergence\\",
   "monitor_every": 5,
   "t_warm": 0.0,
   "seed_n_snaps": 16,
