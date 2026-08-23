@@ -1,0 +1,385 @@
+{
+"processed_mesh_dx_manifest":{
+  "analysis_name": "mesh_dx",
+  "runs": [
+    {
+      "run_id": "MC00R_nx160_dx1p000",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\mesh_convergence\\MC00R_nx160_dx1p000",
+      "analysis_name": "mesh_dx",
+      "n_snapshots": 535,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 11.37559700012207,
+      "phi_max_window": 6.156373023986816,
+      "frequency": 0.18294573643410852,
+      "period": 5.466101694915254,
+      "r_fft": 73135.78665144392,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "MC01R_nx240_dx0p667",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\mesh_convergence\\MC01R_nx240_dx0p667",
+      "analysis_name": "mesh_dx",
+      "n_snapshots": 535,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 240,
+        "ny": 240,
+        "dx": 1.0,
+        "dt_config": 0.0006666667,
+        "Lx": 240.0,
+        "Ly": 240.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 31367082541056.0,
+      "phi_max_window": 15324507275264.0,
+      "frequency": 0.27906976744186046,
+      "period": 3.5833333333333335,
+      "r_fft": 22055781.97528897,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {
+        "r_min": 66.38719770015732,
+        "r_max": 238.99391172056633,
+        "gamma": 0.10166521098673809,
+        "mu": 1.416710349661611,
+        "zero_crossings": 81,
+        "envelope_peaks": 57,
+        "profile_time": 800.0
+      },
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "MC02R_nx320_dx0p500",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\mesh_convergence\\MC02R_nx320_dx0p500",
+      "analysis_name": "mesh_dx",
+      "n_snapshots": 535,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 320,
+        "ny": 320,
+        "dx": 1.0,
+        "dt_config": 0.000375,
+        "Lx": 320.0,
+        "Ly": 320.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": NaN,
+      "phi_max_window": NaN,
+      "frequency": 0.0031007751937984496,
+      "period": 322.5,
+      "r_fft": NaN,
+      "regime_label": "weakly_modulated_or_unresolved",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "MC03R_nx480_dx0p333",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\mesh_convergence\\MC03R_nx480_dx0p333",
+      "analysis_name": "mesh_dx",
+      "n_snapshots": 535,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 480,
+        "ny": 480,
+        "dx": 1.0,
+        "dt_config": 0.0001666667,
+        "Lx": 480.0,
+        "Ly": 480.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": NaN,
+      "phi_max_window": NaN,
+      "frequency": 0.0031007751937984496,
+      "period": 322.5,
+      "r_fft": NaN,
+      "regime_label": "weakly_modulated_or_unresolved",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    }
+  ]
+},
+"configs":[
+    {
+  "eps": 2.8,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 160,
+  "ny": 160,
+  "dx": 1.0,
+  "boundary": "periodic",
+  "dt": 0.0015,
+  "t_total": 800.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 80.0,
+        "cy": 80.0,
+        "radius": 8.0,
+        "amp": null,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 202,
+    "noise_lowpass": 0.0,
+    "phi_background": null
+  },
+  "snap": {
+    "every_steps": 1000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": ".\\models\\article1\\mesh_convergence\\",
+  "monitor_every": 10,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "run_id": "MC00R_nx160_dx1p000",
+  "tags": [
+    "mesh_convergence",
+    "MC00R",
+    "nx160",
+    "cfl_fixed"
+  ]
+},
+{
+  "eps": 2.8,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 240,
+  "ny": 240,
+  "dx": 0.6666666667,
+  "boundary": "periodic",
+  "dt": 0.0006666667,
+  "t_total": 800.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 120.0,
+        "cy": 120.0,
+        "radius": 12.0,
+        "amp": null,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 202,
+    "noise_lowpass": 0.0,
+    "phi_background": null
+  },
+  "snap": {
+    "every_steps": 2250,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": ".\\models\\article1\\mesh_convergence\\",
+  "monitor_every": 10,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "run_id": "MC01R_nx240_dx0p667",
+  "tags": [
+    "mesh_convergence",
+    "MC01R",
+    "nx240",
+    "cfl_fixed"
+  ]
+},
+{
+  "eps": 2.8,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 320,
+  "ny": 320,
+  "dx": 0.5,
+  "boundary": "periodic",
+  "dt": 0.000375,
+  "t_total": 800.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 160.0,
+        "cy": 160.0,
+        "radius": 16.0,
+        "amp": null,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 202,
+    "noise_lowpass": 0.0,
+    "phi_background": null
+  },
+  "snap": {
+    "every_steps": 4000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": ".\\models\\article1\\mesh_convergence\\",
+  "monitor_every": 10,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "run_id": "MC02R_nx320_dx0p500",
+  "tags": [
+    "mesh_convergence",
+    "MC02R",
+    "nx320",
+    "cfl_fixed"
+  ]
+},
+{
+  "eps": 2.8,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 480,
+  "ny": 480,
+  "dx": 0.3333333333,
+  "boundary": "periodic",
+  "dt": 0.0001666667,
+  "t_total": 800.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 240.0,
+        "cy": 240.0,
+        "radius": 24.0,
+        "amp": null,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 202,
+    "noise_lowpass": 0.0,
+    "phi_background": null
+  },
+  "snap": {
+    "every_steps": 9000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+  "out_dir": ".\\models\\article1\\mesh_convergence\\",
+  "monitor_every": 10,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "run_id": "MC03R_nx480_dx0p333",
+  "tags": [
+    "mesh_convergence",
+    "MC03R",
+    "nx480",
+    "cfl_fixed"
+  ]
+}
+]
+}

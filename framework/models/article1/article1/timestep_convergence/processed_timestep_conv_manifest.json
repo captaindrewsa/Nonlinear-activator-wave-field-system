@@ -1,0 +1,141 @@
+{
+  "analysis_name": "timestep_conv",
+  "runs": [
+    {
+      "run_id": "TC00_single_eps2p8_h0p533_dt0p004",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\timestep_convergence\\TC00_single_eps2p8_h0p533_dt0p004",
+      "analysis_name": "timestep_conv",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.004,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 10.842397689819336,
+      "phi_max_window": 5.855743408203125,
+      "frequency": 0.012121212121212121,
+      "period": 82.5,
+      "r_fft": 2293.432400710397,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "TC01_single_eps2p8_h0p533_dt0p002",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\timestep_convergence\\TC01_single_eps2p8_h0p533_dt0p002",
+      "analysis_name": "timestep_conv",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.002,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 10.241296768188477,
+      "phi_max_window": 5.505801200866699,
+      "frequency": 0.01818181818181818,
+      "period": 55.0,
+      "r_fft": 36235.11079903079,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "TC02_single_eps2p8_h0p533_dt0p001",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\timestep_convergence\\TC02_single_eps2p8_h0p533_dt0p001",
+      "analysis_name": "timestep_conv",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.001,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 10.669905662536621,
+      "phi_max_window": 5.775146961212158,
+      "frequency": 0.01818181818181818,
+      "period": 55.0,
+      "r_fft": 3219.235386913981,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "TC03_single_eps2p8_h0p533_dt0p0005",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\timestep_convergence\\TC03_single_eps2p8_h0p533_dt0p0005",
+      "analysis_name": "timestep_conv",
+      "n_snapshots": 162,
+      "t_min": 0.0,
+      "t_max": 800.0,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt_config": 0.0005,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 480.0,
+        "t1": 800.0
+      },
+      "A_pp": 11.081873416900635,
+      "phi_max_window": 5.980186462402344,
+      "frequency": 0.01818181818181818,
+      "period": 55.0,
+      "r_fft": 2842.754125562242,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    }
+  ]
+}

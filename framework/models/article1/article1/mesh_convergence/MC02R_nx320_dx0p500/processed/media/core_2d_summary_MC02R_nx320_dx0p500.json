@@ -1,0 +1,17 @@
+{
+  "run_id": "MC02R_nx320_dx0p500",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\mesh_convergence\\MC02R_nx320_dx0p500",
+  "n_frames": 535,
+  "t_min": 0.0,
+  "t_max": 800.0,
+  "area_mean": 353.65981308411216,
+  "area_max": 2647.0,
+  "r_eff_mean": 7.193653618119585,
+  "phi_core_max": NaN,
+  "phi_global_max": NaN,
+  "n_components_max": 30497,
+  "source_counts": {
+    "threshold": 230,
+    "fallback-max": 305
+  }
+}
