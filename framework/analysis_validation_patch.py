@@ -8,29 +8,29 @@ Validation-oriented analysis of sim_framework 2D NPZ snapshots.
 Input layout (compatible with npz_to_csv_gif.py)
 -------------------------------------------------
 run_dir/
-    config.json
-    snapshots_2d/
-        snapshot2d_<tag>_t0000000.npz
-        ...
+  config.json
+  snapshots_2d/
+    snapshot2d_<run_id>_t0000000.npz
+    ...
 
 Each NPZ must contain phi and t; psi is optional. The script accepts either
 one run (--run-id) or a collection of runs (--out-dir). For each run it writes
 only below
 
-    run_dir/processed/<analysis-name>/
+  run_dir/processed/<analysis_name>/
 
 and therefore does not overwrite the media products created by
 npz_to_csv_gif.py.
 
 Products per run
 ----------------
-summary_timeseries.csv     per-snapshot scalar observables
-summary.json               run-level metrics and classification
-figures/*.png and *.pdf    time series, FFT, final radial profiles, optional
-                            threshold-sweep and two-spot diagnostics
+summary_timeseries.csv   per-snapshot scalar observables
+summary.json              run-level metrics and classification
+figures/*.png and *.pdf   time series, FFT, final radial profiles, optional
+                           threshold-sweep and two-spot diagnostics
 tail_fit.json              transparent zero-crossing/envelope tail estimate
-threshold_sweep.csv        optional classification sensitivity results
-twospot_diagnostics.csv    optional component/separation/COM trajectory
+threshold_sweep.csv       optional classification sensitivity results
+two_spot_diagnostics.csv  optional component/separation/COM trajectory
 
 Examples
 --------
@@ -55,7 +55,7 @@ import math
 import os
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import matplotlib
 matplotlib.use("Agg")
@@ -123,6 +123,7 @@ def load_config(run_dir: str) -> Dict[str, Any]:
     except (OSError, json.JSONDecodeError):
         return {}
 
+
 def load_track(run_dir: str) -> Dict[str, np.ndarray]:
     path = Path(run_dir) / "track.csv"
     if not path.is_file():
@@ -141,6 +142,7 @@ def load_track(run_dir: str) -> Dict[str, np.ndarray]:
 
     return {key: np.asarray(values, dtype=float) for key, values in columns.items()}
 
+
 def load_result(run_dir: str) -> Dict[str, Any]:
     path = Path(run_dir) / "result.json"
     if not path.is_file():
@@ -158,11 +160,13 @@ def config_value(cfg: Dict[str, Any], *names: str, default: Any = None) -> Any:
             return cfg[name]
     return default
 
+
 def result_value(res: Dict[str, Any], *names: str, default: Any = None) -> Any:
     for name in names:
         if name in res:
             return res[name]
     return default
+
 
 def resolve_dx(cfg: Dict[str, Any], res: Dict[str, Any], args: argparse.Namespace) -> float:
     raw = config_value(cfg, "dx", default=result_value(res, "dx", default=args.dx))
@@ -170,6 +174,7 @@ def resolve_dx(cfg: Dict[str, Any], res: Dict[str, Any], args: argparse.Namespac
         return float(raw)
     except (TypeError, ValueError):
         return float(args.dx)
+
 
 def resolve_dt(cfg: Dict[str, Any], res: Dict[str, Any]) -> Optional[float]:
     raw = config_value(cfg, "dt", default=result_value(res, "dt", default=None))
@@ -297,7 +302,7 @@ def local_maxima(values: np.ndarray) -> np.ndarray:
 def fit_tail(r: np.ndarray, psi_r: np.ndarray, r_min: float, r_max: float) -> Dict[str, Any]:
     """A reproducible, deliberately conservative tail estimate.
 
-    mu is inferred from zero-crossing spacings (mu = pi/<Delta r>), and
+    mu is inferred from zero-crossing spacings (mu = pi / spacing), and
     gamma is the least-squares slope of log of positive local peak magnitudes.
     The result is an empirical profile descriptor, not a spatial-eigenvalue
     calculation of the breathing state.
@@ -422,7 +427,7 @@ def threshold_rows(t: np.ndarray, phi_c: np.ndarray, phi_lo: Optional[float], ar
                         "collapse_offset": offset,
                         "amplitude_threshold": amplitude,
                         "fft_threshold": prominence,
-                        "A_pp": a_pp,
+                        "a_pp": a_pp,
                         "r_fft": fm["r_fft"],
                         "period": fm["period"],
                         "label": classify(pmax, phi_lo, a_pp, fm["r_fft"], offset, amplitude, prominence),
@@ -449,7 +454,6 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
 
     out_dir = analysis_dir_of(run_dir, args.analysis_name)
     figure_dir = ensure_dir(Path(out_dir) / "figures")
-
 
     nx_cfg = config_value(cfg, "nx", default=None)
     ny_cfg = config_value(cfg, "ny", default=None)
@@ -488,26 +492,28 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
             "solver_max_abs_v": result_value(res, "max_abs_v", default=None),
             "n_snapshots": 0,
             "t_min": None,
-            "t_max": result_value(res, "t_total_reached", "ttotal_reached", default=None),
+            "t_max": result_value(res, "t_total_reached", default=None),
+            "time_series_source": None,
+            "n_track_points": 0,
             "grid": grid,
-            "observationwindow": {
+            "observation_window": {
                 "t0": None,
                 "t1": None,
             },
-            "App": None,
-            "phimaxwindow": None,
+            "a_pp": None,
+            "phi_max_window": None,
             "frequency": None,
             "period": None,
-            "rfft": None,
-            "regimelabel": "numerically_unstable",
-            "classificationparameters": {
-                "collapseoffset": args.collapse_offset,
-                "amplitudethreshold": args.amplitude_threshold,
-                "fftprominence": args.fft_prominence,
+            "r_fft": None,
+            "regime_label": "numerically_unstable",
+            "classification_parameters": {
+                "collapse_offset": args.collapse_offset,
+                "amplitude_threshold": args.amplitude_threshold,
+                "fft_prominence": args.fft_prominence,
             },
-            "tailfit": {},
-            "thresholdsweeprows": 0,
-            "twospotrows": 0,
+            "tail_fit": {},
+            "threshold_sweep_rows": 0,
+            "two_spot_rows": 0,
         }
 
         with open(Path(out_dir) / "summary.json", "w", encoding="utf-8") as f:
@@ -521,7 +527,7 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
     final_psi: Optional[np.ndarray] = None
 
     for path in files:
-        phi, psi, v, t = load_snapshot(path)
+        phi, psi, v, t_val = load_snapshot(path)
         components = detect_components(phi, args.core_threshold, args.min_component_area)
         gx, gy, mass = weighted_global_centroid(phi, args.core_threshold)
 
@@ -534,7 +540,7 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
         separation = periodic_distance(c0, c1, phi.shape, dx) if c0 and c1 else float("nan")
 
         records.append({
-            "t": float(t),
+            "t": float(t_val),
             "phi_center": center,
             "phi_max": float(np.max(phi)),
             "phi_min": float(np.min(phi)),
@@ -543,14 +549,14 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
             "global_cx": gx,
             "global_cy": gy,
             "active_mass": mass,
-            "c0x": c0.get("cx", float("nan")),
-            "c0y": c0.get("cy", float("nan")),
-            "c0area": c0.get("area", float("nan")),
-            "c0reff": c0.get("reff", float("nan")),
-            "c1x": c1.get("cx", float("nan")),
-            "c1y": c1.get("cy", float("nan")),
-            "c1area": c1.get("area", float("nan")),
-            "c1reff": c1.get("reff", float("nan")),
+            "c0_x": c0.get("cx", float("nan")),
+            "c0_y": c0.get("cy", float("nan")),
+            "c0_area": c0.get("area", float("nan")),
+            "c0_r_eff": c0.get("r_eff", float("nan")),
+            "c1_x": c1.get("cx", float("nan")),
+            "c1_y": c1.get("cy", float("nan")),
+            "c1_area": c1.get("area", float("nan")),
+            "c1_r_eff": c1.get("r_eff", float("nan")),
             "separation": separation,
         })
 
@@ -563,34 +569,44 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
     records.sort(key=lambda row: row["t"])
     t = np.asarray([r["t"] for r in records], dtype=float)
     phi_c = np.asarray([r["phi_center"] for r in records], dtype=float)
-    phi_max = np.asarray([r["phi_max"] for r in records], dtype=float)
 
     track_t = track.get("t", np.array([], dtype=float))
     track_phi_c = track.get("phi_center", np.array([], dtype=float))
     valid_track = np.isfinite(track_t) & np.isfinite(track_phi_c)
     track_t = track_t[valid_track]
     track_phi_c = track_phi_c[valid_track]
-    
-    time_t = track_t if len(track_t) >= 8 else t
-    time_phi_c = track_phi_c if len(track_t) >= 8 else phi_c
+
+    use_track = False
+    if len(track_t) >= 8:
+        if len(t) > 0:
+            t_end = float(t[-1])
+            span = float(t[-1] - t[0]) if len(t) >= 2 else 0.0
+            tol = max(5.0 * (dt_cfg or 0.0), 0.05 * span, 1e-9)
+            use_track = np.isfinite(track_t[-1]) and (track_t[-1] >= t_end - tol)
+        else:
+            use_track = True
+
+    time_t = track_t if use_track else t
+    time_phi_c = track_phi_c if use_track else phi_c
+    time_series_source = "track.csv" if use_track else "snapshots"
 
     with open(Path(out_dir) / "summary_timeseries.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(records[0].keys()))
         writer.writeheader()
         writer.writerows(records)
 
-    phi_lo_raw = config_value(cfg, "philo", "phi_lo", default=config_value(cfg, "hbg", "h", default=None))
-    phi_hi_raw = config_value(cfg, "phihi", "phi_hi", default=None)
+    phi_lo_raw = config_value(cfg, "phi_lo", default=config_value(cfg, "h_bg", "h", default=None))
+    phi_hi_raw = config_value(cfg, "phi_hi", default=None)
 
     phi_lo = float(phi_lo_raw) if phi_lo_raw is not None else None
     phi_hi = float(phi_hi_raw) if phi_hi_raw is not None else None
 
     t0 = args.window_t0 if args.window_t0 is not None else float(time_t[0] + 0.6 * (time_t[-1] - time_t[0]))
     t1 = args.window_t1 if args.window_t1 is not None else float(time_t[-1])
-    
+
     in_window = (time_t >= t0) & (time_t <= t1)
     tw, yw = time_t[in_window], time_phi_c[in_window]
-    
+
     amp = float(np.max(yw) - np.min(yw)) if len(yw) else float("nan")
     fft = fft_metrics(tw, yw)
     regime = classify(float(np.max(yw)) if len(yw) else float("nan"), phi_lo, amp, fft["r_fft"], args.collapse_offset, args.amplitude_threshold, args.fft_prominence)
@@ -620,7 +636,7 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
             )
             tail_result["profile_time"] = float(t[-1])
 
-            with open(Path(out_dir) / "tailfit.json", "w", encoding="utf-8") as f:
+            with open(Path(out_dir) / "tail_fit.json", "w", encoding="utf-8") as f:
                 json.dump(tail_result, f, indent=2, ensure_ascii=False)
 
     sweep: List[Dict[str, Any]] = []
@@ -633,7 +649,7 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
                 writer.writerows(sweep)
             plot_threshold_sweep(sweep, figure_dir)
 
-    twospot_rows: List[Dict[str, Any]] = []
+    two_spot_rows: List[Dict[str, Any]] = []
     if args.two_spot and records:
         start_x = records[0]["global_cx"]
         start_y = records[0]["global_cy"]
@@ -649,7 +665,7 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
             else:
                 displacement = float("nan")
 
-            twospot_rows.append({
+            two_spot_rows.append({
                 "t": row["t"],
                 "n_components": row["n_components"],
                 "separation": row["separation"],
@@ -659,14 +675,14 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
             })
 
         with open(Path(out_dir) / "two_spot_diagnostics.csv", "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=list(twospot_rows[0].keys()))
+            writer = csv.DictWriter(f, fieldnames=list(two_spot_rows[0].keys()))
             writer.writeheader()
-            writer.writerows(twospot_rows)
+            writer.writerows(two_spot_rows)
 
         plot_pair(
             t,
-            np.asarray([q["separation"] for q in twospot_rows], dtype=float),
-            np.asarray([q["com_displacement"] for q in twospot_rows], dtype=float),
+            np.asarray([q["separation"] for q in two_spot_rows], dtype=float),
+            np.asarray([q["com_displacement"] for q in two_spot_rows], dtype=float),
             figure_dir,
         )
 
@@ -685,33 +701,33 @@ def process_run(run_dir: str, args: argparse.Namespace) -> Optional[Dict[str, An
         "n_snapshots": len(records),
         "t_min": float(t[0]),
         "t_max": float(t[-1]),
-        "time_series_source": "track.csv" if len(track_t) >= 8 else "snapshots",
-        "n_track_points": int(len(track_t)),  
+        "time_series_source": time_series_source,
+        "n_track_points": int(len(track_t)),
         "grid": grid,
-        "observationwindow": {
+        "observation_window": {
             "t0": t0,
             "t1": t1,
         },
-        "App": amp,
-        "phimaxwindow": float(np.max(yw)) if len(yw) else float("nan"),
+        "a_pp": amp,
+        "phi_max_window": float(np.max(yw)) if len(yw) else float("nan"),
         "frequency": fft["frequency"],
         "period": fft["period"],
         "r_fft": fft["r_fft"],
-        "regimelabel": regime,
-        "classificationparameters": {
-            "collapseoffset": args.collapse_offset,
-            "amplitudethreshold": args.amplitude_threshold,
-            "fftprominence": args.fft_prominence,
+        "regime_label": regime,
+        "classification_parameters": {
+            "collapse_offset": args.collapse_offset,
+            "amplitude_threshold": args.amplitude_threshold,
+            "fft_prominence": args.fft_prominence,
         },
-        "tailfit": tail_result,
-        "thresholdsweeprows": len(sweep),
-        "twospotrows": len(twospot_rows),
+        "tail_fit": tail_result,
+        "threshold_sweep_rows": len(sweep),
+        "two_spot_rows": len(two_spot_rows),
     }
 
     with open(Path(out_dir) / "summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
 
-    print(f"[ok] {run_id} regime={regime} App={amp:.6g} period={fft['period']:.6g} -> {out_dir}")
+    print(f"[ok] {run_id} regime={regime} a_pp={amp:.6g} period={fft['period']:.6g} -> {out_dir}")
     return summary
 
 
@@ -733,7 +749,7 @@ def build_parser() -> argparse.ArgumentParser:
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--run-id", help="Path to a single run directory")
     source.add_argument("--out-dir", help="Path containing multiple run directories")
-    parser.add_argument("--analysis-name", required=True, help="Results go to processed/<analysis-name>/")
+    parser.add_argument("--analysis-name", required=True, help="Results go to processed/<analysis_name>/")
     parser.add_argument("--dx", type=float, default=1.0, help="Physical grid spacing used for radial/separation coordinates")
     parser.add_argument("--core-threshold", type=float, default=CORE_THRESHOLD)
     parser.add_argument("--min-component-area", type=int, default=MIN_COMPONENT_AREA)
@@ -756,20 +772,20 @@ def build_parser() -> argparse.ArgumentParser:
 def write_collection_manifest(out_dir: str, analysis_name: str, summaries: List[Dict[str, Any]]) -> None:
     root = Path(out_dir)
     stem = f"processed_{safe_slug(analysis_name)}_manifest"
+    keys = [
+        "run_id",
+        "run_dir",
+        "valid_for_analysis",
+        "solver_status",
+        "failure_reason",
+        "n_snapshots",
+        "regime_label",
+        "a_pp",
+        "period",
+        "frequency",
+        "r_fft",
+    ]
     with open(root / f"{stem}.csv", "w", newline="", encoding="utf-8") as f:
-        keys = [
-            "run_id",
-            "run_dir",
-            "valid_for_analysis",
-            "solver_status",
-            "failure_reason",
-            "n_snapshots",
-            "regimelabel",
-            "App",
-            "period",
-            "frequency",
-            "rfft",
-        ]
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         for summary in summaries:

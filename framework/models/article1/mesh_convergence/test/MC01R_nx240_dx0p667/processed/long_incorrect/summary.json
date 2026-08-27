@@ -1,0 +1,42 @@
+{
+  "run_id": "MC01R_nx240_dx0p667",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\mesh_convergence\\test\\MC01R_nx240_dx0p667",
+  "analysis_name": "long_incorrect",
+  "valid_for_analysis": false,
+  "solver_status": "numerically_unstable",
+  "failure_reason": "v_bound",
+  "failure_step": 195560,
+  "failure_time": 130.37333985200002,
+  "solver_max_abs_phi": 264.9229431152344,
+  "solver_max_abs_psi": 414.5325622558594,
+  "solver_max_abs_v": 1000.9530639648438,
+  "n_snapshots": 0,
+  "t_min": null,
+  "t_max": 130.37333985200002,
+  "grid": {
+    "nx": 240,
+    "ny": 240,
+    "dx": 0.6666666667,
+    "dt": 0.0006666667,
+    "Lx": 160.000000008,
+    "Ly": 160.000000008
+  },
+  "observationwindow": {
+    "t0": null,
+    "t1": null
+  },
+  "App": null,
+  "phimaxwindow": null,
+  "frequency": null,
+  "period": null,
+  "rfft": null,
+  "regimelabel": "numerically_unstable",
+  "classificationparameters": {
+    "collapseoffset": 0.3,
+    "amplitudethreshold": 0.15,
+    "fftprominence": 5.0
+  },
+  "tailfit": {},
+  "thresholdsweeprows": 0,
+  "twospotrows": 0
+}

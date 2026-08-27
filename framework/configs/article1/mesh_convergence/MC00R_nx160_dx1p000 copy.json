@@ -12,7 +12,7 @@
   "dx": 1.0,
   "boundary": "periodic",
   "dt": 0.0015,
-  "t_total": 10.0,
+  "t_total": 800.0,
   "attractors": [],
   "gamma_bg": 0.0,
   "h_custom": null,
@@ -20,14 +20,7 @@
   "init": {
     "npz_path": null,
     "spots": [
-      {
-        "cx": 80.0,
-        "cy": 80.0,
-        "radius": 8.0,
-        "amp": null,
-        "shape": "disk",
-        "phase_v": 0.0
-      }
+      {"cx": 80.0, "cy": 80.0, "radius": 8.0, "amp": null, "shape": "disk", "phase_v": 0.0}
     ],
     "noise_amplitude": 0.0,
     "noise_seed": 202,
@@ -44,20 +37,10 @@
     "max_snaps": -1,
     "labels_save": []
   },
-  "out_dir": ".\\models\\article1\\mesh_convergence\\",
+  "out_dir": ".\\models\\article1\\mesh_convergence\\test\\",
   "monitor_every": 10,
   "t_warm": 0.0,
   "seed_n_snaps": 16,
-  "check_nonfinite": true,
-  "abort_on_instability": true,
-  "max_abs_phi": 1000.0,
-  "max_abs_psi": 1000.0,
-  "max_abs_v": 1000.0,
   "run_id": "MC00R_nx160_dx1p000",
-  "tags": [
-    "mesh_convergence",
-    "MC00R",
-    "nx160",
-    "cfl_fixed"
-  ]
+  "tags": ["mesh_convergence", "MC00R", "nx160", "cfl_fixed"]
 }

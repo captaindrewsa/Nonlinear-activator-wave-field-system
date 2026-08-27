@@ -8,12 +8,15 @@
   "dx": 1.0,
   "monitor_every": 10,
   "_n_snaps": 7,
-  "wallsec": 5.9,
+  "wallsec": 5.74,
   "finalmass": 133,
   "failure_reason": null,
   "failure_step": null,
   "failure_time": null,
-  "max_abs_phi": null,
-  "max_abs_psi": null,
-  "max_abs_v": null
+  "max_abs_phi": 4.029992580413818,
+  "max_abs_psi": 5.1912078857421875,
+  "max_abs_v": 5.804860591888428,
+  "peak_abs_phi": 4.029953479766846,
+  "peak_abs_psi": 5.191102027893066,
+  "peak_abs_v": 5.804803848266602
 }

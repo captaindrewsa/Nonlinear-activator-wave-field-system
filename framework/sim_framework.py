@@ -559,6 +559,9 @@ class Simulator:
         self.run_id   = cfg.resolve_run_id()
         self.out_dir  = os.path.join(cfg.out_dir, self.run_id)
         self.snap_dir = os.path.join(self.out_dir, "snapshots_2d")
+        self._max_abs_phi = 0.0
+        self._max_abs_psi = 0.0
+        self._max_abs_v = 0.0
         os.makedirs(self.out_dir,  exist_ok=True)
         os.makedirs(self.snap_dir, exist_ok=True)
 
@@ -700,6 +703,13 @@ class Simulator:
                     if cfg.abort_on_instability:
                         aborted = True
                         break
+            phi_abs = float(phi.detach().abs().max().item())
+            psi_abs = float(psi.detach().abs().max().item())
+            v_abs = float(v.detach().abs().max().item())
+
+            self._max_abs_phi = max(self._max_abs_phi, phi_abs)
+            self._max_abs_psi = max(self._max_abs_psi, psi_abs)
+            self._max_abs_v = max(self._max_abs_v, v_abs)
 
             if stepss <= n <= stepse and n % sp.every_steps == 0:
                 if sp.max_snaps < 0 or self._n_snaps < sp.max_snaps:
@@ -746,9 +756,10 @@ class Simulator:
             "failure_reason": self.failure_reason,
             "failure_step": self.failure_step,
             "failure_time": self.failure_time,
-            "max_abs_phi": float(peak_abs_phi),
-            "max_abs_psi": float(peak_abs_psi),
-            "max_abs_v": float(peak_abs_v),
+            "status": "completed",
+            "max_abs_phi": self._max_abs_phi,
+            "max_abs_psi": self._max_abs_psi,
+            "max_abs_v": self._max_abs_v,
             "peak_abs_phi": float(peak_abs_phi),
             "peak_abs_psi": float(peak_abs_psi),
             "peak_abs_v": float(peak_abs_v),
