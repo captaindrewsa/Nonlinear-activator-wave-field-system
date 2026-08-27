@@ -249,6 +249,13 @@ class SimConfig:
     t_warm:        float = 120.0
     seed_n_snaps:  int   = 16
 
+    # Numerical safety / early abort
+    check_nonfinite: bool = True
+    abort_on_instability: bool = True
+    max_abs_phi: float = 1.0e3
+    max_abs_psi: float = 1.0e3
+    max_abs_v: float = 1.0e3
+
     # Метаданные
     run_id: str       = ""
     tags:   List[str] = field(default_factory=list)
@@ -572,88 +579,225 @@ class Simulator:
         self._n_snaps = 0
         self.result: Optional[Dict] = None
 
+        self.status: str = "running"
+        self.failure_reason: Optional[str] = None
+        self.failure_step: Optional[int] = None
+        self.failure_time: Optional[float] = None
+        self.failure_meta: Dict[str, Any] = {}
+
     def add_hook(self, every_n: int, fn: Callable) -> None:
         """Зарегистрировать хук.
         fn(step, t, phi_cpu, psi_cpu, v_cpu, sim) -> None
         """
         self._hooks.append((every_n, fn))
 
+    def _set_failure(self, meta: Dict[str, Any]) -> None:
+        self.status = "numerically_unstable"
+        self.failure_reason = str(meta.get("reason", "unknown"))
+        self.failure_step = int(meta.get("step")) if meta.get("step") is not None else None
+        self.failure_time = float(meta.get("time")) if meta.get("time") is not None else None
+        self.failure_meta = dict(meta)
+
+    def _check_instability(
+        self,
+        step: int,
+        t: float,
+        phi_np: np.ndarray,
+        psi_np: np.ndarray,
+        v_np: np.ndarray,
+    ) -> Optional[Dict[str, Any]]:
+        cfg = self.cfg
+
+        if cfg.check_nonfinite:
+            phi_finite = np.isfinite(phi_np).all()
+            psi_finite = np.isfinite(psi_np).all()
+            v_finite = np.isfinite(v_np).all()
+            if not (phi_finite and psi_finite and v_finite):
+                return {
+                    "reason": "nonfinite",
+                    "step": step,
+                    "time": t,
+                    "max_abs_phi": float(np.nanmax(np.abs(phi_np))),
+                    "max_abs_psi": float(np.nanmax(np.abs(psi_np))),
+                    "max_abs_v": float(np.nanmax(np.abs(v_np))),
+                }
+
+        max_phi = float(np.nanmax(np.abs(phi_np)))
+        max_psi = float(np.nanmax(np.abs(psi_np)))
+        max_v = float(np.nanmax(np.abs(v_np)))
+
+        if max_phi > cfg.max_abs_phi:
+            return {
+                "reason": "phi_bound",
+                "step": step,
+                "time": t,
+                "max_abs_phi": max_phi,
+                "max_abs_psi": max_psi,
+                "max_abs_v": max_v,
+            }
+
+        if max_psi > cfg.max_abs_psi:
+            return {
+                "reason": "psi_bound",
+                "step": step,
+                "time": t,
+                "max_abs_phi": max_phi,
+                "max_abs_psi": max_psi,
+                "max_abs_v": max_v,
+            }
+
+        if max_v > cfg.max_abs_v:
+            return {
+                "reason": "v_bound",
+                "step": step,
+                "time": t,
+                "max_abs_phi": max_phi,
+                "max_abs_psi": max_psi,
+                "max_abs_v": max_v,
+            }
+
+        return None
+
     def run(self) -> Dict[str, Any]:
-        cfg      = self.cfg
-        t0_wall  = time.time()
-        steps    = int(cfg.t_total / cfg.dt)
-        sp       = cfg.snap
-        step_ss  = int(sp.t_start / cfg.dt)
-        step_se  = int(sp.t_stop  / cfg.dt) if sp.t_stop > 0 else steps + 1
-
-        logger.info(f"[{self.run_id}] Start: {steps} steps on {self.device}")
-
-        phi, psi, v = self.phi, self.psi, self.v
-
+        cfg = self.cfg
+        t0wall = time.time()
         steps = int(cfg.t_total / cfg.dt)
-        t0_wall = time.time()
-        progress_every = 1000
+        sp = cfg.snap
+        stepss = int(sp.t_start / cfg.dt)
+        stepse = int(sp.t_stop / cfg.dt) if sp.t_stop > 0 else steps + 1
+
+        logger.info(f"[{self.run_id}] Start {steps} steps on {self.device}")
+        phi, psi, v = self.phi, self.psi, self.v
+        progressevery = 1000
+
+        last_step = 0
+        last_t = 0.0
+        aborted = False
 
         for n in range(steps + 1):
-            t_now = n * cfg.dt
+            tnow = n * cfg.dt
+            last_step = n
+            last_t = tnow
 
             if n % cfg.monitor_every == 0:
                 phi_np = phi.detach().cpu().numpy()
                 psi_np = psi.detach().cpu().numpy()
-                self._record_track(n, t_now, phi_np, psi_np)
+                v_np = v.detach().cpu().numpy()
 
-            if (step_ss <= n <= step_se
-                    and n % sp.every_steps == 0
-                    and (sp.max_snaps < 0 or self._n_snaps < sp.max_snaps)):
-                self._save_snapshot(phi, psi, v, t_now)
-                self._n_snaps += 1
+                self.recordtrack(n, tnow, phi_np, psi_np)
+                self._track.setdefault("vmaxabs", []).append(float(np.nanmax(np.abs(v_np))))
 
-            for every_n, fn in self._hooks:
-                if n % every_n == 0:
-                    fn(n, t_now,
-                       phi.detach().cpu(), psi.detach().cpu(), v.detach().cpu(),
-                       self)
+                fail = self._check_instability(n, tnow, phi_np, psi_np, v_np)
+                if fail is not None:
+                    self._set_failure(fail)
+                    logger.warning(f"[{self.run_id}] instability detected: {fail}")
+
+                    try:
+                        self._save_snapshot(phi, psi, v, tnow, suffix="_unstable_last")
+                    except Exception as e:
+                        logger.warning(f"[{self.run_id}] failed to save unstable snapshot: {e}")
+
+                    if cfg.abort_on_instability:
+                        aborted = True
+                        break
+
+            if stepss <= n <= stepse and n % sp.every_steps == 0:
+                if sp.max_snaps < 0 or self._n_snaps < sp.max_snaps:
+                    self._save_snapshot(phi, psi, v, tnow)
+                    self._n_snaps += 1
+
+            for everyn, fn in self._hooks:
+                if n % everyn == 0:
+                    fn(n, tnow, phi.detach().cpu(), psi.detach().cpu(), v.detach().cpu(), self)
 
             phi, psi, v = self.stepper.step(phi, psi, v)
-            if n % progress_every == 0 or n == steps:
-                render_progress(n, steps, cfg.dt, t0_wall)
-        print()
 
+            if n % progressevery == 0 or n == steps:
+                render_progress(n, steps, cfg.dt, t0wall)
+
+        print()
         self.phi, self.psi, self.v = phi, psi, v
-        self._save_snapshot(phi, psi, v, cfg.t_total, suffix="_final")
+
+        if not aborted:
+            self._save_snapshot(phi, psi, v, last_t, suffix="_final")
+
         self._save_track_csv()
 
-        wall = time.time() - t0_wall
+        if self.status == "running":
+            self.status = "completed"
+
+        peak_abs_phi = max(self._track.get("phimax", [float("nan")]))
+        peak_abs_psi = max(self._track.get("psimaxabs", [float("nan")]))
+        peak_abs_v = max(self._track.get("vmaxabs", [float("nan")]))
+
+        wall = time.time() - t0wall
         self.result = {
-            "run_id":     self.run_id,
-            "t_total":    cfg.t_total,
-            "n_snaps":    self._n_snaps,
-            "wall_sec":   round(wall, 2),
-            "final_mass": self._track["mass"][-1] if self._track["mass"] else 0,
+            "run_id": self.run_id,
+            "status": self.status,
+            "t_total_requested": float(cfg.t_total),
+            "t_total_reached": float(last_t),
+            "last_step": int(last_step),
+            "dt": float(cfg.dt),
+            "dx": float(cfg.dx),
+            "monitor_every": int(cfg.monitor_every),
+            "_n_snaps": int(self._n_snaps),
+            "wallsec": round(wall, 2),
+            "finalmass": self._track["mass"][-1] if self._track["mass"] else 0,
+            "failure_reason": self.failure_reason,
+            "failure_step": self.failure_step,
+            "failure_time": self.failure_time,
+            "max_abs_phi": float(peak_abs_phi),
+            "max_abs_psi": float(peak_abs_psi),
+            "max_abs_v": float(peak_abs_v),
+            "peak_abs_phi": float(peak_abs_phi),
+            "peak_abs_psi": float(peak_abs_psi),
+            "peak_abs_v": float(peak_abs_v),
         }
+
         Path(os.path.join(self.out_dir, "result.json")).write_text(
-            json.dumps(self.result, indent=2, ensure_ascii=False), encoding="utf-8")
-        logger.info(f"[{self.run_id}] Done in {wall:.1f}s | snaps={self._n_snaps}")
+            json.dumps(self.result, indent=2, ensure_ascii=False),
+            encoding="utf-8"
+        )
+
+        logger.info(
+            f"[{self.run_id}] Done status={self.status} in {wall:.1f}s, snaps={self._n_snaps}"
+        )
+
+
         return self.result
 
-    def _record_track(self, step: int, t: float, phi_np: np.ndarray, psi_np: np.ndarray = None) -> None:
+    def recordtrack(
+        self,
+        step: int,
+        t: float,
+        phi_np: np.ndarray,
+        psi_np: Optional[np.ndarray] = None
+    ) -> None:
         thresh = 1.5
-        mask   = phi_np > thresh
-        mass   = int(mask.sum())
+        mask = phi_np > thresh
+        mass = int(mask.sum())
+
         self._track["step"].append(step)
         self._track["t"].append(t)
         self._track["mass"].append(mass)
-        self._track["phi_center"].append(float(phi_np[self.cfg.nx//2, self.cfg.ny//2]))
-        self._track.setdefault("phi_max", []).append(float(np.abs(phi_np).max()))
+        self._track["phi_center"].append(float(phi_np[self.cfg.nx // 2, self.cfg.ny // 2]))
+        self._track.setdefault("phimax", []).append(float(np.nanmax(np.abs(phi_np))))
+
         if psi_np is not None:
-            self._track.setdefault("psi_max_abs", []).append(float(np.abs(psi_np).max()))
+            self._track.setdefault("psimaxabs", []).append(float(np.nanmax(np.abs(psi_np))))
+
         if mass >= 20:
             coords = np.argwhere(mask)
-            w  = phi_np[mask] - thresh
-            cx = float((coords[:,0]*w).sum() / w.sum())
-            cy = float((coords[:,1]*w).sum() / w.sum())
+            w = phi_np[mask] - thresh
+            wsum = w.sum()
+            if np.isfinite(wsum) and wsum > 0:
+                cx = float((coords[:, 0] * w).sum() / wsum)
+                cy = float((coords[:, 1] * w).sum() / wsum)
+            else:
+                cx = cy = float("nan")
         else:
             cx = cy = float("nan")
+
         self._track["cx"].append(cx)
         self._track["cy"].append(cy)
 

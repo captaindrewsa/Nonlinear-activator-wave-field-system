@@ -1,0 +1,19 @@
+{
+  "run_id": "MC01R_nx240_dx0p667",
+  "status": "numerically_unstable",
+  "t_total_requested": 800.0,
+  "t_total_reached": 130.37333985200002,
+  "last_step": 195560,
+  "dt": 0.0006666667,
+  "dx": 0.6666666667,
+  "monitor_every": 10,
+  "_n_snaps": 87,
+  "wallsec": 896.21,
+  "finalmass": 12061,
+  "failure_reason": "v_bound",
+  "failure_step": 195560,
+  "failure_time": 130.37333985200002,
+  "max_abs_phi": 264.9229431152344,
+  "max_abs_psi": 414.5325622558594,
+  "max_abs_v": 1000.9530639648438
+}
