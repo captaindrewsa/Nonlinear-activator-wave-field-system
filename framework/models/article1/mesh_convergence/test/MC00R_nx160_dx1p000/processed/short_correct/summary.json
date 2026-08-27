@@ -29,9 +29,10 @@
   },
   "a_pp": 0.0,
   "phi_max_window": 3.976609706878662,
-  "frequency": 0.24968789013731887,
-  "period": 4.005000000000152,
+  "frequency": NaN,
+  "period": NaN,
   "r_fft": 0.0,
+  "fft_significant": false,
   "regime_label": "weakly_modulated_or_unresolved",
   "classification_parameters": {
     "collapse_offset": 0.3,

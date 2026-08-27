@@ -1,0 +1,57 @@
+{
+"eps": 2.8,
+"h_bg": 0.533,
+"D_psi": 0.0,
+"phi_lo": 0.533,
+"phi_hi": 3.9766096853487105,
+"kappa": 10.0,
+"theta1": 4.0,
+"theta2": 16.0,
+"boundary": "periodic",
+"gamma_bg": 0.0,
+"h_custom": null,
+"gamma_custom": null,
+"attractors": [],
+"monitor_every": 10,
+"t_warm": 0.0,
+"seed_n_snaps": 16,
+"nx": 160,
+"ny": 160,
+"dx": 1.0,
+"dt": 0.003,
+"t_total": 800.0,
+"init": {
+"npz_path": null,
+"spots": [
+{
+"cx": 80.0,
+"cy": 80.0,
+"radius": 8.0,
+"amp": null,
+"shape": "disk",
+"phase_v": 0.0
+}
+],
+"noise_amplitude": 0.01,
+"noise_seed": 303,
+"noise_lowpass": 0.05,
+"phi_background": null
+},
+"snap": {
+"every_steps": 4000,
+"t_start": 0.0,
+"t_stop": -1.0,
+"save_phi": true,
+"save_psi": true,
+"save_v": true,
+"max_snaps": -1,
+"labels_save": []
+},
+"out_dir": ".\\models\\article1\\after_response_and_patch\\init_robustness\\\\",
+"run_id": "IR303_seed303",
+"tags": [
+"after_response_and_patch",
+"init_robustness",
+"IR303_seed303"
+]
+}
