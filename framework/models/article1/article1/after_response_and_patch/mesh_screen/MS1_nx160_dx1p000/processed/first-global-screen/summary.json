@@ -1,0 +1,53 @@
+{
+  "run_id": "MS1_nx160_dx1p000",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_screen\\MS1_nx160_dx1p000",
+  "analysis_name": "first-global-screen",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 4.029992580413818,
+  "solver_max_abs_psi": 5.1912078857421875,
+  "solver_max_abs_v": 5.804860591888428,
+  "n_snapshots": 18,
+  "t_min": 0.0,
+  "t_max": 9.99899959564209,
+  "time_series_source": "track.csv",
+  "n_track_points": 667,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.0015,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 5.994,
+    "t1": 9.99
+  },
+  "a_pp": 0.0,
+  "phi_max_window": 3.976609706878662,
+  "frequency": NaN,
+  "period": NaN,
+  "r_fft": 0.0,
+  "fft_significant": false,
+  "regime_label": "weakly_modulated_or_unresolved",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {
+    "r_min": 28.22534565167569,
+    "r_max": 101.61124434603248,
+    "gamma": NaN,
+    "mu": NaN,
+    "zero_crossings": 0,
+    "envelope_peaks": 0,
+    "profile_time": 9.99899959564209
+  },
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

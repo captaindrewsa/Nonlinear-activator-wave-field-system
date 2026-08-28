@@ -1,0 +1,201 @@
+{
+  "analysis_name": "mesh_doagnostic",
+  "runs": [
+    {
+      "run_id": "ML0_nx080_dx2p000",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML0_nx080_dx2p000",
+      "analysis_name": "mesh_doagnostic",
+      "valid_for_analysis": true,
+      "solver_status": "completed",
+      "failure_reason": null,
+      "failure_step": null,
+      "failure_time": null,
+      "solver_max_abs_phi": 4.005397796630859,
+      "solver_max_abs_psi": 3.3058102130889893,
+      "solver_max_abs_v": 1.0958077907562256,
+      "n_snapshots": 35,
+      "t_min": 0.0,
+      "t_max": 799.9979858398438,
+      "time_series_source": "track.csv",
+      "n_track_points": 13334,
+      "grid": {
+        "nx": 80,
+        "ny": 80,
+        "dx": 2.0,
+        "dt": 0.006,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 479.988,
+        "t1": 799.98
+      },
+      "a_pp": 0.003874063491821289,
+      "phi_max_window": 0.5307557582855225,
+      "frequency": 0.0031246094238219038,
+      "period": 320.0400000000121,
+      "r_fft": 1368549810820.4043,
+      "fft_significant": true,
+      "regime_label": "collapsed",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "ML1_nx160_dx1p000",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML1_nx160_dx1p000",
+      "analysis_name": "mesh_doagnostic",
+      "valid_for_analysis": true,
+      "solver_status": "completed",
+      "failure_reason": null,
+      "failure_step": null,
+      "failure_time": null,
+      "solver_max_abs_phi": 6.98060417175293,
+      "solver_max_abs_psi": 9.885416030883789,
+      "solver_max_abs_v": 10.400623321533203,
+      "n_snapshots": 135,
+      "t_min": 0.0,
+      "t_max": 799.99951171875,
+      "time_series_source": "track.csv",
+      "n_track_points": 53334,
+      "grid": {
+        "nx": 160,
+        "ny": 160,
+        "dx": 1.0,
+        "dt": 0.0015,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 479.99699999999996,
+        "t1": 799.995
+      },
+      "a_pp": 11.471040725708008,
+      "phi_max_window": 6.1940717697143555,
+      "frequency": 0.18124433611466126,
+      "period": 5.51741379309843,
+      "r_fft": 37424612681.87209,
+      "fft_significant": true,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {},
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "ML2_nx320_dx0p500",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML2_nx320_dx0p500",
+      "analysis_name": "mesh_doagnostic",
+      "valid_for_analysis": true,
+      "solver_status": "completed",
+      "failure_reason": "v_bound",
+      "failure_step": 54010,
+      "failure_time": 20.25375,
+      "solver_max_abs_phi": 208.69554138183594,
+      "solver_max_abs_psi": 463.0179138183594,
+      "solver_max_abs_v": 1002.6506958007812,
+      "n_snapshots": 15,
+      "t_min": 0.0,
+      "t_max": 20.25374984741211,
+      "time_series_source": "track.csv",
+      "n_track_points": 5402,
+      "grid": {
+        "nx": 320,
+        "ny": 320,
+        "dx": 0.5,
+        "dt": 0.000375,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 12.15225,
+        "t1": 20.25375
+      },
+      "a_pp": 22.863393306732178,
+      "phi_max_window": 3.976609706878662,
+      "frequency": 0.12339966065092853,
+      "period": 8.103750000000307,
+      "r_fft": 1576895477179.413,
+      "fft_significant": true,
+      "regime_label": "breathing",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {
+        "r_min": 28.225345669856573,
+        "r_max": 101.61124441148367,
+        "gamma": NaN,
+        "mu": NaN,
+        "zero_crossings": 0,
+        "envelope_peaks": 0,
+        "profile_time": 20.25374984741211
+      },
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    },
+    {
+      "run_id": "ML3_nx640_dx0p250",
+      "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML3_nx640_dx0p250",
+      "analysis_name": "mesh_doagnostic",
+      "valid_for_analysis": true,
+      "solver_status": "completed",
+      "failure_reason": "v_bound",
+      "failure_step": 48450,
+      "failure_time": 4.5421875,
+      "solver_max_abs_phi": 82.15084838867188,
+      "solver_max_abs_psi": 263.3800964355469,
+      "solver_max_abs_v": 1002.9471435546875,
+      "n_snapshots": 14,
+      "t_min": 0.0,
+      "t_max": 4.542187690734863,
+      "time_series_source": "track.csv",
+      "n_track_points": 4846,
+      "grid": {
+        "nx": 640,
+        "ny": 640,
+        "dx": 0.25,
+        "dt": 9.375e-05,
+        "Lx": 160.0,
+        "Ly": 160.0
+      },
+      "observation_window": {
+        "t0": 2.7253125,
+        "t1": 4.5421875
+      },
+      "a_pp": 0.0,
+      "phi_max_window": 3.976609706878662,
+      "frequency": NaN,
+      "period": NaN,
+      "r_fft": 0.0,
+      "fft_significant": false,
+      "regime_label": "weakly_modulated_or_unresolved",
+      "classification_parameters": {
+        "collapse_offset": 0.3,
+        "amplitude_threshold": 0.15,
+        "fft_prominence": 5.0
+      },
+      "tail_fit": {
+        "r_min": 28.225345656987365,
+        "r_max": 101.61124436515452,
+        "gamma": NaN,
+        "mu": NaN,
+        "zero_crossings": 0,
+        "envelope_peaks": 0,
+        "profile_time": 4.542187690734863
+      },
+      "threshold_sweep_rows": 0,
+      "two_spot_rows": 0
+    }
+  ]
+}

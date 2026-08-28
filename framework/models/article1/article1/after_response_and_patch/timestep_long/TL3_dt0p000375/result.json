@@ -1,0 +1,22 @@
+{
+  "run_id": "TL3_dt0p000375",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.999875,
+  "last_step": 2133333,
+  "dt": 0.000375,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 534,
+  "wallsec": 1184.43,
+  "finalmass": 231,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 7.0264668464660645,
+  "max_abs_psi": 9.919208526611328,
+  "max_abs_v": 10.422870635986328,
+  "peak_abs_phi": 7.026453971862793,
+  "peak_abs_psi": 9.919208526611328,
+  "peak_abs_v": 10.422868728637695
+}

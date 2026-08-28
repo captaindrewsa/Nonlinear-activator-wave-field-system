@@ -1,0 +1,65 @@
+{
+  "eps": 2.8,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+
+  "nx": 240,
+  "ny": 240,
+  "dx": 1.0,
+  "boundary": "periodic",
+
+  "dt": 0.0015,
+  "t_total": 1600.0,
+
+  "gamma_bg": 0.0,
+  "attractors": [],
+
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 111.0,
+        "cy": 120.0,
+        "radius": 8.0,
+        "amp": 3.9766096853487105,
+        "shape": "disk",
+        "phase_v": 0.0
+      },
+      {
+        "cx": 129.0,
+        "cy": 120.0,
+        "radius": 8.0,
+        "amp": 3.9766096853487105,
+        "shape": "disk",
+        "phase_v": 0.06
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 42,
+    "noise_lowpass": 0.0,
+    "phi_background": 0.533
+  },
+
+  "snap": {
+    "every_steps": 4000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+
+  "out_dir": ".\\models\\article1\\after_response_and_patch\\drift_validation\\",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+  "run_id": "DR2_domain240",
+  "tags": ["drift", "validation", "eps2p8", "h0p533", "dist18", "dx1p0", "L240"]
+}

@@ -1,0 +1,45 @@
+{
+  "run_id": "DL0_nx080_L080",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\domain_size_long\\DL0_nx080_L080",
+  "analysis_name": "first-global-screen",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.590073108673096,
+  "solver_max_abs_psi": 9.2554292678833,
+  "solver_max_abs_v": 10.197762489318848,
+  "n_snapshots": 68,
+  "t_min": 0.0,
+  "t_max": 799.9979858398438,
+  "time_series_source": "track.csv",
+  "n_track_points": 26667,
+  "grid": {
+    "nx": 80,
+    "ny": 80,
+    "dx": 1.0,
+    "dt": 0.003,
+    "Lx": 80.0,
+    "Ly": 80.0
+  },
+  "observation_window": {
+    "t0": 479.988,
+    "t1": 799.98
+  },
+  "a_pp": 11.468840599060059,
+  "phi_max_window": 6.156792640686035,
+  "frequency": 0.18749414080827026,
+  "period": 5.33349999999515,
+  "r_fft": 2184867072.996008,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

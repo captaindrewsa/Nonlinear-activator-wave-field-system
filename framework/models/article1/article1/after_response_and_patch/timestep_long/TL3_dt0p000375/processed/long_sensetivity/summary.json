@@ -1,0 +1,45 @@
+{
+  "run_id": "TL3_dt0p000375",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\timestep_long\\TL3_dt0p000375",
+  "analysis_name": "long_sensetivity",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 7.0264668464660645,
+  "solver_max_abs_psi": 9.919208526611328,
+  "solver_max_abs_v": 10.422870635986328,
+  "n_snapshots": 535,
+  "t_min": 0.0,
+  "t_max": 799.9998779296875,
+  "time_series_source": "track.csv",
+  "n_track_points": 213334,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.000375,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 479.99924999999996,
+    "t1": 799.99875
+  },
+  "a_pp": 11.53261423110962,
+  "phi_max_window": 6.1996169090271,
+  "frequency": 0.18124858399697608,
+  "period": 5.517284482711787,
+  "r_fft": 65856018662921.06,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 81,
+  "two_spot_rows": 0
+}

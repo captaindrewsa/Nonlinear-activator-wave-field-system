@@ -1,0 +1,22 @@
+{
+  "run_id": "DS2_nx160_L160",
+  "status": "completed",
+  "t_total_requested": 10.0,
+  "t_total_reached": 9.999,
+  "last_step": 3333,
+  "dt": 0.003,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 9,
+  "wallsec": 1.79,
+  "finalmass": 133,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 4.030237674713135,
+  "max_abs_psi": 5.192676544189453,
+  "max_abs_v": 5.808168888092041,
+  "peak_abs_phi": 4.030078887939453,
+  "peak_abs_psi": 5.192276477813721,
+  "peak_abs_v": 5.807469844818115
+}

@@ -1,0 +1,22 @@
+{
+  "run_id": "TS1_dt0p001500",
+  "status": "completed",
+  "t_total_requested": 10.0,
+  "t_total_reached": 9.999,
+  "last_step": 6666,
+  "dt": 0.0015,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 17,
+  "wallsec": 3.61,
+  "finalmass": 133,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 4.029992580413818,
+  "max_abs_psi": 5.1912078857421875,
+  "max_abs_v": 5.804860591888428,
+  "peak_abs_phi": 4.029953479766846,
+  "peak_abs_psi": 5.191102027893066,
+  "peak_abs_v": 5.804803848266602
+}

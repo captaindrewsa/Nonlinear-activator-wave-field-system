@@ -1,0 +1,45 @@
+{
+  "run_id": "ML1_nx160_dx1p000",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML1_nx160_dx1p000",
+  "analysis_name": "first-global-screen",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.98060417175293,
+  "solver_max_abs_psi": 9.885416030883789,
+  "solver_max_abs_v": 10.400623321533203,
+  "n_snapshots": 135,
+  "t_min": 0.0,
+  "t_max": 799.99951171875,
+  "time_series_source": "track.csv",
+  "n_track_points": 53334,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.0015,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 479.99699999999996,
+    "t1": 799.995
+  },
+  "a_pp": 11.471040725708008,
+  "phi_max_window": 6.1940717697143555,
+  "frequency": 0.18124433611466126,
+  "period": 5.51741379309843,
+  "r_fft": 37424612681.87209,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

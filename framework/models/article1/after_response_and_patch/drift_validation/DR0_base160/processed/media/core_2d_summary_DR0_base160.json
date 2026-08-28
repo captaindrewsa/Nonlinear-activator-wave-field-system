@@ -1,0 +1,17 @@
+{
+  "run_id": "DR0_base160",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR0_base160",
+  "n_frames": 268,
+  "t_min": 0.0,
+  "t_max": 1599.9990234375,
+  "area_mean": 8.205223880597014,
+  "area_max": 197.0,
+  "r_eff_mean": 1.529002568162681,
+  "phi_core_max": 5.60551643371582,
+  "phi_global_max": 6.0706000328063965,
+  "n_components_max": 472,
+  "source_counts": {
+    "threshold": 268,
+    "fallback-max": 0
+  }
+}

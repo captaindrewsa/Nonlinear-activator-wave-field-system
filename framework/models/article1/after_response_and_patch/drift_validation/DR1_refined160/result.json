@@ -1,0 +1,22 @@
+{
+  "run_id": "DR1_refined160",
+  "status": "completed",
+  "t_total_requested": 1600.0,
+  "t_total_reached": 20.265,
+  "last_step": 54040,
+  "dt": 0.000375,
+  "dx": 0.5,
+  "monitor_every": 40,
+  "_n_snaps": 4,
+  "wallsec": 514.6,
+  "finalmass": 2707,
+  "failure_reason": "v_bound",
+  "failure_step": 54040,
+  "failure_time": 20.265,
+  "max_abs_phi": 208.67984008789062,
+  "max_abs_psi": 462.98175048828125,
+  "max_abs_v": 1019.0430908203125,
+  "peak_abs_phi": 208.6793212890625,
+  "peak_abs_psi": 462.98095703125,
+  "peak_abs_v": 1019.5829467773438
+}
