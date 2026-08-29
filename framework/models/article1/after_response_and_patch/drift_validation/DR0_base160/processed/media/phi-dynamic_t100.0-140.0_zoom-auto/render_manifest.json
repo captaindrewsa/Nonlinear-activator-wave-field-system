@@ -1,0 +1,56 @@
+{
+  "run_id": "DR0_base160",
+  "variant": "phi-dynamic_t100.0-140.0_zoom-auto",
+  "variant_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR0_base160\\processed\\media\\phi-dynamic_t100.0-140.0_zoom-auto",
+  "t_start": 100.0,
+  "t_end": 140.0,
+  "times": null,
+  "time_tolerance": 1000000000.0,
+  "selected_n_frames": 7,
+  "selected_times": [
+    102.0,
+    108.0,
+    114.0,
+    120.0,
+    126.0,
+    132.0,
+    138.0
+  ],
+  "phi": {
+    "scale": "dynamic",
+    "norm": "meanstd",
+    "k_sigma": 2.5,
+    "q_low": 0.02,
+    "q_high": 0.98,
+    "vmin": null,
+    "vmax": null,
+    "global_ref": "window",
+    "transform": "none",
+    "precomputed_vmin": null,
+    "precomputed_vmax": null
+  },
+  "psi": {
+    "scale": "dynamic",
+    "norm": "quantile",
+    "k_sigma": 2.5,
+    "q_low": 0.02,
+    "q_high": 0.98,
+    "vmin": null,
+    "vmax": null,
+    "global_ref": "window",
+    "transform": "none",
+    "precomputed_vmin": null,
+    "precomputed_vmax": null
+  },
+  "zoom": "auto",
+  "zoom_margin": 12,
+  "crop": [
+    49,
+    111,
+    47,
+    114
+  ],
+  "gif_path": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR0_base160\\processed\\media\\phi-dynamic_t100.0-140.0_zoom-auto\\DR0_base160.gif",
+  "frames_phi_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR0_base160\\processed\\media\\phi-dynamic_t100.0-140.0_zoom-auto\\frames_phi",
+  "frames_psi_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR0_base160\\processed\\media\\phi-dynamic_t100.0-140.0_zoom-auto\\frames_psi"
+}
