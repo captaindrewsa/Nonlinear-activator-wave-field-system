@@ -1,0 +1,23 @@
+{
+  "run_id": "DIAG-TANH-W05",
+  "status": "completed",
+  "t_total_requested": 0.1,
+  "t_total_reached": 0.099984375,
+  "last_step": 2133,
+  "dt": 4.6875e-05,
+  "dx": 0.5,
+  "monitor_every": 10,
+  "_n_snaps": 1,
+  "wallsec": 11.9,
+  "finalmass": 845,
+  "terminated_early": false,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 3.976609706878662,
+  "max_abs_psi": 0.02014542929828167,
+  "max_abs_v": 0.3923225402832031,
+  "peak_abs_phi": 3.976609706878662,
+  "peak_abs_psi": 0.02009028196334839,
+  "peak_abs_v": 0.3918113708496094
+}

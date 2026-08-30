@@ -1,0 +1,63 @@
+{
+  "eps": 3.0,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+
+  "nx": 320,
+  "ny": 320,
+  "dx": 0.5,
+  "boundary": "periodic",
+
+  "dt": 0.00009375,
+  "t_total": 100.0,
+
+  "attractors": [],
+  "gamma_bg": 0.0,
+
+  "init": {
+    "spots": [
+      {
+        "cx": 160.0,
+        "cy": 160.0,
+        "radius": 16.0,
+        "amp": null,
+        "shape": "disk",
+        "phase_v": 0.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 42,
+    "noise_lowpass": 0.0,
+    "phi_background": 0.533
+  },
+
+  "snap": {
+    "every_steps": 2000,
+    "t_start": 0.0,
+    "t_stop": -1.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": -1,
+    "labels_save": []
+  },
+
+  "out_dir": ".\\models\\article1\\after_response_and_patch\\output_mesh_dt",
+  "monitor_every": 10,
+  "t_warm": 120.0,
+  "seed_n_snaps": 16,
+
+  "check_nonfinite": true,
+  "abort_on_instability": true,
+  "max_abs_phi": 1000.0,
+  "max_abs_psi": 1000.0,
+  "max_abs_v": 1000.0,
+
+  "run_id": "DT05-2",
+  "tags": ["mesh", "dt-sweep", "dx-0.5", "eps-3.0"]
+}
