@@ -1,0 +1,22 @@
+{
+  "run_id": "ML1_nx160_dx1p000",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.9995,
+  "last_step": 533333,
+  "dt": 0.0015,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 134,
+  "wallsec": 289.69,
+  "finalmass": 268,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.98060417175293,
+  "max_abs_psi": 9.885416030883789,
+  "max_abs_v": 10.400623321533203,
+  "peak_abs_phi": 6.980481147766113,
+  "peak_abs_psi": 9.885393142700195,
+  "peak_abs_v": 10.400325775146484
+}

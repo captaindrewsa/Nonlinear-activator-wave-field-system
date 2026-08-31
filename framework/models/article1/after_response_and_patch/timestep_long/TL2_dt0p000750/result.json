@@ -1,0 +1,22 @@
+{
+  "run_id": "TL2_dt0p000750",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.9995,
+  "last_step": 1066666,
+  "dt": 0.00075,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 267,
+  "wallsec": 579.09,
+  "finalmass": 261,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 7.02761697769165,
+  "max_abs_psi": 9.921127319335938,
+  "max_abs_v": 10.426363945007324,
+  "peak_abs_phi": 7.027606964111328,
+  "peak_abs_psi": 9.921048164367676,
+  "peak_abs_v": 10.426363945007324
+}

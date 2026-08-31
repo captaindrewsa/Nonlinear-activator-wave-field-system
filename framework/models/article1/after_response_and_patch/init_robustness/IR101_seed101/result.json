@@ -1,0 +1,22 @@
+{
+  "run_id": "IR101_seed101",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.998,
+  "last_step": 266666,
+  "dt": 0.003,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 67,
+  "wallsec": 146.18,
+  "finalmass": 208,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.804593563079834,
+  "max_abs_psi": 9.713935852050781,
+  "max_abs_v": 10.126015663146973,
+  "peak_abs_phi": 6.804593563079834,
+  "peak_abs_psi": 9.712352752685547,
+  "peak_abs_v": 10.125202178955078
+}

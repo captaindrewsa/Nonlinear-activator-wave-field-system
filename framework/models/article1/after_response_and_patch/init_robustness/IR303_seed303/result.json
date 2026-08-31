@@ -1,0 +1,22 @@
+{
+  "run_id": "IR303_seed303",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.998,
+  "last_step": 266666,
+  "dt": 0.003,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 67,
+  "wallsec": 146.28,
+  "finalmass": 218,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.590122699737549,
+  "max_abs_psi": 9.25539779663086,
+  "max_abs_v": 9.593602180480957,
+  "peak_abs_phi": 6.590070724487305,
+  "peak_abs_psi": 9.25532341003418,
+  "peak_abs_v": 9.59228229522705
+}
