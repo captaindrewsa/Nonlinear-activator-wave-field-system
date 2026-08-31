@@ -1,0 +1,22 @@
+{
+  "run_id": "DT05-3",
+  "status": "completed",
+  "t_total_requested": 100.0,
+  "t_total_reached": 23.51109375,
+  "last_step": 501570,
+  "dt": 4.6875e-05,
+  "dx": 0.5,
+  "monitor_every": 10,
+  "_n_snaps": 251,
+  "wallsec": 2731.47,
+  "finalmass": 1900,
+  "failure_reason": "v_bound",
+  "failure_step": 501570,
+  "failure_time": 23.51109375,
+  "max_abs_phi": 193.90841674804688,
+  "max_abs_psi": 431.4084167480469,
+  "max_abs_v": 1000.1707763671875,
+  "peak_abs_phi": 193.90841674804688,
+  "peak_abs_psi": 431.4084167480469,
+  "peak_abs_v": 1000.2108154296875
+}

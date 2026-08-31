@@ -1,0 +1,23 @@
+{
+  "run_id": "DIAG-TANH-W10",
+  "status": "numerically_unstable",
+  "t_total_requested": 100.0,
+  "t_total_reached": 25.50421875,
+  "last_step": 544090,
+  "dt": 4.6875e-05,
+  "dx": 0.5,
+  "monitor_every": 10,
+  "_n_snaps": 28,
+  "wallsec": 3372.6,
+  "finalmass": 1928,
+  "terminated_early": true,
+  "failure_reason": "v_bound",
+  "failure_step": 544090,
+  "failure_time": 25.50421875,
+  "max_abs_phi": 197.47476196289062,
+  "max_abs_psi": 451.2368469238281,
+  "max_abs_v": 1000.4651489257812,
+  "peak_abs_phi": 197.47476196289062,
+  "peak_abs_psi": 451.2368469238281,
+  "peak_abs_v": 1000.517333984375
+}

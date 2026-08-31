@@ -1,0 +1,45 @@
+{
+  "run_id": "IR303_seed303",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\init_robustness\\IR303_seed303",
+  "analysis_name": "first-global-screen",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.590122699737549,
+  "solver_max_abs_psi": 9.25539779663086,
+  "solver_max_abs_v": 9.593602180480957,
+  "n_snapshots": 68,
+  "t_min": 0.0,
+  "t_max": 799.9979858398438,
+  "time_series_source": "track.csv",
+  "n_track_points": 26667,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.003,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 479.988,
+    "t1": 799.98
+  },
+  "a_pp": 10.501099109649658,
+  "phi_max_window": 5.725494384765625,
+  "frequency": 0.17811943376785677,
+  "period": 5.614210526310683,
+  "r_fft": 1320256506.8351455,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

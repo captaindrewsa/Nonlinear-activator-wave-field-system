@@ -1,0 +1,22 @@
+{
+  "run_id": "IR404_seed404",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.998,
+  "last_step": 266666,
+  "dt": 0.003,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 67,
+  "wallsec": 147.34,
+  "finalmass": 216,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.590061187744141,
+  "max_abs_psi": 9.255464553833008,
+  "max_abs_v": 9.624523162841797,
+  "peak_abs_phi": 6.5900163650512695,
+  "peak_abs_psi": 9.255375862121582,
+  "peak_abs_v": 9.624464988708496
+}

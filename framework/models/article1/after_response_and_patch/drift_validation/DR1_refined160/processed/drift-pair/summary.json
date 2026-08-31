@@ -1,0 +1,53 @@
+{
+  "run_id": "DR1_refined160",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR1_refined160",
+  "analysis_name": "drift-pair",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": "v_bound",
+  "failure_step": 54040,
+  "failure_time": 20.265,
+  "solver_max_abs_phi": 208.67984008789062,
+  "solver_max_abs_psi": 462.98175048828125,
+  "solver_max_abs_v": 1019.0430908203125,
+  "n_snapshots": 5,
+  "t_min": 0.0,
+  "t_max": 20.264999389648438,
+  "time_series_source": "track.csv",
+  "n_track_points": 1352,
+  "grid": {
+    "nx": 320,
+    "ny": 320,
+    "dx": 0.5,
+    "dt": 0.000375,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 12.159,
+    "t1": 20.265
+  },
+  "a_pp": 316.45489501953125,
+  "phi_max_window": 181.83041381835938,
+  "frequency": 0.36968576709795276,
+  "period": 2.705000000000102,
+  "r_fft": 63588415237.22184,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {
+    "r_min": 28.2344732214465,
+    "r_max": 101.6441035972074,
+    "gamma": NaN,
+    "mu": NaN,
+    "zero_crossings": 0,
+    "envelope_peaks": 0,
+    "profile_time": 20.264999389648438
+  },
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 5
+}

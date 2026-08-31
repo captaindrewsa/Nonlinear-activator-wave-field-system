@@ -1,0 +1,22 @@
+{
+  "run_id": "IR202_seed202",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.998,
+  "last_step": 266666,
+  "dt": 0.003,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 67,
+  "wallsec": 145.82,
+  "finalmass": 226,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.801480770111084,
+  "max_abs_psi": 9.697639465332031,
+  "max_abs_v": 10.103595733642578,
+  "peak_abs_phi": 6.800778388977051,
+  "peak_abs_psi": 9.697639465332031,
+  "peak_abs_v": 10.103435516357422
+}

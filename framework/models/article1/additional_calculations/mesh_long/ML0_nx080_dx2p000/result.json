@@ -1,0 +1,22 @@
+{
+  "run_id": "ML0_nx080_dx2p000",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.998,
+  "last_step": 133333,
+  "dt": 0.006,
+  "dx": 2.0,
+  "monitor_every": 10,
+  "_n_snaps": 34,
+  "wallsec": 45.83,
+  "finalmass": 0,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 4.005397796630859,
+  "max_abs_psi": 3.3058102130889893,
+  "max_abs_v": 1.0958077907562256,
+  "peak_abs_phi": 4.005392551422119,
+  "peak_abs_psi": 3.305711030960083,
+  "peak_abs_v": 1.095781683921814
+}

@@ -131,6 +131,8 @@ class InitSpot:
     amp:     Optional[float] = None
     shape:   str   = "disk"
     phase_v: float = 0.0
+    interface_width: float = 1.0
+
 
 
 @dataclass
@@ -428,6 +430,14 @@ def build_initial_state(cfg: SimConfig, device: torch.device
         if sp.shape == "disk":
             mask = ((x - sp.cx)**2 + (y - sp.cy)**2 <= sp.radius**2).float()
             phi  = phi + (amp - bg) * mask
+        elif sp.shape == "tanh_disk":
+            # sp.radius and sp.interface_width are specified in grid cells.
+            # At dx = 0.5: R0 = 8 physical units -> radius = 16 cells;
+            # w = 0.5 physical units -> interface_width = 1 cell.
+            r = torch.sqrt((x - sp.cx)**2 + (y - sp.cy)**2)
+            width = max(float(sp.interface_width), 1.0e-6)
+            profile = 0.5 * (1.0 - torch.tanh((r - sp.radius) / width))
+            phi = phi + (amp - bg) * profile
         elif sp.shape == "gaussian":
             g   = torch.exp(-0.5*(((x-sp.cx)/sp.radius)**2+((y-sp.cy)/sp.radius)**2))
             phi = phi + (amp - bg) * g
@@ -597,8 +607,12 @@ class Simulator:
     def _set_failure(self, meta: Dict[str, Any]) -> None:
         self.status = "numerically_unstable"
         self.failure_reason = str(meta.get("reason", "unknown"))
-        self.failure_step = int(meta.get("step")) if meta.get("step") is not None else None
-        self.failure_time = float(meta.get("time")) if meta.get("time") is not None else None
+        self.failure_step = (
+            int(meta["step"]) if meta.get("step") is not None else None
+        )
+        self.failure_time = (
+            float(meta["time"]) if meta.get("time") is not None else None
+        )
         self.failure_meta = dict(meta)
 
     def _check_instability(
@@ -733,7 +747,11 @@ class Simulator:
 
         self._save_track_csv()
 
-        if self.status == "running":
+        # Finalize the run status before constructing result.json.
+        # A recorded failure always takes precedence over nominal loop completion.
+        if self.failure_reason is not None:
+            self.status = "numerically_unstable"
+        elif self.status == "running":
             self.status = "completed"
 
         peak_abs_phi = max(self._track.get("phimax", [float("nan")]))
@@ -753,10 +771,11 @@ class Simulator:
             "_n_snaps": int(self._n_snaps),
             "wallsec": round(wall, 2),
             "finalmass": self._track["mass"][-1] if self._track["mass"] else 0,
+            "status": self.status,
+            "terminated_early": bool(self.failure_reason is not None),
             "failure_reason": self.failure_reason,
             "failure_step": self.failure_step,
             "failure_time": self.failure_time,
-            "status": "completed",
             "max_abs_phi": self._max_abs_phi,
             "max_abs_psi": self._max_abs_psi,
             "max_abs_v": self._max_abs_v,

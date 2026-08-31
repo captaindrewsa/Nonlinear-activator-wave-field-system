@@ -1,0 +1,45 @@
+{
+  "run_id": "ML0_nx080_dx2p000",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\article1\\after_response_and_patch\\mesh_long\\ML0_nx080_dx2p000",
+  "analysis_name": "mesh_doagnostic",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 4.005397796630859,
+  "solver_max_abs_psi": 3.3058102130889893,
+  "solver_max_abs_v": 1.0958077907562256,
+  "n_snapshots": 35,
+  "t_min": 0.0,
+  "t_max": 799.9979858398438,
+  "time_series_source": "track.csv",
+  "n_track_points": 13334,
+  "grid": {
+    "nx": 80,
+    "ny": 80,
+    "dx": 2.0,
+    "dt": 0.006,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 479.988,
+    "t1": 799.98
+  },
+  "a_pp": 0.003874063491821289,
+  "phi_max_window": 0.5307557582855225,
+  "frequency": 0.0031246094238219038,
+  "period": 320.0400000000121,
+  "r_fft": 1368549810820.4043,
+  "fft_significant": true,
+  "regime_label": "collapsed",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

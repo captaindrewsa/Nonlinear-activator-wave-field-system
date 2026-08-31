@@ -1,0 +1,22 @@
+{
+  "run_id": "MS3_nx640_dx0p250",
+  "status": "completed",
+  "t_total_requested": 10.0,
+  "t_total_reached": 4.5421875,
+  "last_step": 48450,
+  "dt": 9.375e-05,
+  "dx": 0.25,
+  "monitor_every": 10,
+  "_n_snaps": 122,
+  "wallsec": 115.28,
+  "finalmass": 3341,
+  "failure_reason": "v_bound",
+  "failure_step": 48450,
+  "failure_time": 4.5421875,
+  "max_abs_phi": 82.15084838867188,
+  "max_abs_psi": 263.3800964355469,
+  "max_abs_v": 1002.9471435546875,
+  "peak_abs_phi": 82.15568542480469,
+  "peak_abs_psi": 263.37969970703125,
+  "peak_abs_v": 1003.282958984375
+}

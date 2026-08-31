@@ -1,0 +1,45 @@
+{
+  "run_id": "DR2_domain240",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\drift_validation\\DR2_domain240",
+  "analysis_name": "drift-pair",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.592832088470459,
+  "solver_max_abs_psi": 8.794093132019043,
+  "solver_max_abs_v": 9.499337196350098,
+  "n_snapshots": 268,
+  "t_min": 0.0,
+  "t_max": 1599.9990234375,
+  "time_series_source": "track.csv",
+  "n_track_points": 106667,
+  "grid": {
+    "nx": 240,
+    "ny": 240,
+    "dx": 1.0,
+    "dt": 0.0015,
+    "Lx": 240.0,
+    "Ly": 240.0
+  },
+  "observation_window": {
+    "t0": 959.9939999999999,
+    "t1": 1599.99
+  },
+  "a_pp": 9.36388635635376,
+  "phi_max_window": 5.1820149421691895,
+  "frequency": 0.18281107178728237,
+  "period": 5.470128205164689,
+  "r_fft": 47239103641.71981,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 268
+}

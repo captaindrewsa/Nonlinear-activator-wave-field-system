@@ -1,0 +1,22 @@
+{
+  "run_id": "ML2_nx320_dx0p500",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 20.25375,
+  "last_step": 54010,
+  "dt": 0.000375,
+  "dx": 0.5,
+  "monitor_every": 10,
+  "_n_snaps": 14,
+  "wallsec": 46.87,
+  "finalmass": 1636,
+  "failure_reason": "v_bound",
+  "failure_step": 54010,
+  "failure_time": 20.25375,
+  "max_abs_phi": 208.69554138183594,
+  "max_abs_psi": 463.0179138183594,
+  "max_abs_v": 1002.6506958007812,
+  "peak_abs_phi": 208.69500732421875,
+  "peak_abs_psi": 463.0171203613281,
+  "peak_abs_v": 1003.2080688476562
+}

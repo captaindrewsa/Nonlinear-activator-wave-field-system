@@ -1,0 +1,53 @@
+{
+  "run_id": "DT05-2",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article1\\after_response_and_patch\\output_mesh_dt\\DT05-2",
+  "analysis_name": "mesh-dt-05-short",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": "v_bound",
+  "failure_step": 250780,
+  "failure_time": 23.510625,
+  "solver_max_abs_phi": 194.0001983642578,
+  "solver_max_abs_psi": 431.6063232421875,
+  "solver_max_abs_v": 1000.463134765625,
+  "n_snapshots": 127,
+  "t_min": 0.0,
+  "t_max": 23.5106258392334,
+  "time_series_source": "track.csv",
+  "n_track_points": 25079,
+  "grid": {
+    "nx": 320,
+    "ny": 320,
+    "dx": 0.5,
+    "dt": 9.375e-05,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 0.0,
+    "t1": 100.0
+  },
+  "a_pp": 31.74443531036377,
+  "phi_max_window": 14.553841590881348,
+  "frequency": 0.04253226471018088,
+  "period": 23.511562500000892,
+  "r_fft": 3.7280369977809336e+16,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {
+    "r_min": 28.22534575854966,
+    "r_max": 101.61124473077878,
+    "gamma": NaN,
+    "mu": NaN,
+    "zero_crossings": 0,
+    "envelope_peaks": 0,
+    "profile_time": 23.5106258392334
+  },
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}
