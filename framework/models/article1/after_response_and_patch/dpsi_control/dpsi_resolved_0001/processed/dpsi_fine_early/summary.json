@@ -1,0 +1,45 @@
+{
+  "run_id": "dpsi_resolved_0001",
+  "run_dir": "D:\\Аспирантура\\Nonlinear-activator-wave-field-system\\framework\\models\\article1\\after_response_and_patch\\dpsi_control\\dpsi_resolved_0001",
+  "analysis_name": "dpsi_fine_early",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.246788501739502,
+  "solver_max_abs_psi": 8.232333183288574,
+  "solver_max_abs_v": 8.399317741394043,
+  "n_snapshots": 241,
+  "t_min": 441.0,
+  "t_max": 799.99951171875,
+  "time_series_source": "track.csv",
+  "n_track_points": 53334,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.0015,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 0.0,
+    "t1": 100.0
+  },
+  "a_pp": 10.45663833618164,
+  "phi_max_window": 4.209849834442139,
+  "frequency": 0.15999200039997394,
+  "period": 6.250312500000237,
+  "r_fft": 24169435032.04353,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

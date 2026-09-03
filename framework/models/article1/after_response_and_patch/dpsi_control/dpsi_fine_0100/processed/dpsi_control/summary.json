@@ -1,0 +1,45 @@
+{
+  "run_id": "dpsi_fine_0100",
+  "run_dir": "D:\\Аспирантура\\Nonlinear-activator-wave-field-system\\framework\\models\\article1\\after_response_and_patch\\dpsi_control\\dpsi_fine_0100",
+  "analysis_name": "dpsi_control",
+  "valid_for_analysis": false,
+  "solver_status": "numerically_unstable",
+  "failure_reason": "v_bound",
+  "failure_step": 566720,
+  "failure_time": 26.565,
+  "solver_max_abs_phi": 212.42539978027344,
+  "solver_max_abs_psi": 477.400146484375,
+  "solver_max_abs_v": 1000.1990356445312,
+  "n_snapshots": 0,
+  "t_min": null,
+  "t_max": 26.565,
+  "time_series_source": null,
+  "n_track_points": 0,
+  "grid": {
+    "nx": 320,
+    "ny": 320,
+    "dx": 0.5,
+    "dt": 4.6875e-05,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": null,
+    "t1": null
+  },
+  "a_pp": null,
+  "phi_max_window": null,
+  "frequency": null,
+  "period": null,
+  "r_fft": null,
+  "fft_significant": null,
+  "regime_label": "numerically_unstable",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

@@ -1,0 +1,23 @@
+{
+  "run_id": "dpsi_resolved_0001_seed202",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.9995,
+  "last_step": 533333,
+  "dt": 0.0015,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 240,
+  "wallsec": 349.49,
+  "finalmass": 136,
+  "terminated_early": false,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.246788501739502,
+  "max_abs_psi": 8.232333183288574,
+  "max_abs_v": 8.399317741394043,
+  "peak_abs_phi": 6.246788501739502,
+  "peak_abs_psi": 8.232242584228516,
+  "peak_abs_v": 8.3992280960083
+}

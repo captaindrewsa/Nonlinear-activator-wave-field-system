@@ -1,0 +1,23 @@
+{
+  "run_id": "dpsi_fine_0100",
+  "status": "numerically_unstable",
+  "t_total_requested": 100.0,
+  "t_total_reached": 26.565,
+  "last_step": 566720,
+  "dt": 4.6875e-05,
+  "dx": 0.5,
+  "monitor_every": 10,
+  "_n_snaps": 29,
+  "wallsec": 609.5,
+  "finalmass": 2085,
+  "terminated_early": true,
+  "failure_reason": "v_bound",
+  "failure_step": 566720,
+  "failure_time": 26.565,
+  "max_abs_phi": 212.42539978027344,
+  "max_abs_psi": 477.400146484375,
+  "max_abs_v": 1000.1990356445312,
+  "peak_abs_phi": 212.42544555664062,
+  "peak_abs_psi": 477.4001159667969,
+  "peak_abs_v": 1000.263427734375
+}

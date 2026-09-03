@@ -1,0 +1,21 @@
+{
+  "n_snapshots": 48,
+  "t_min_used": 480.0,
+  "t_max_used": 799.99951171875,
+  "k_nyquist": 3.141592653589793,
+  "k_nyquist_over_2": 1.5707963267948966,
+  "fields": {
+    "phi": {
+      "dominant_k": 3.1285026841998356,
+      "high_k_fraction_k_ge_knyquist_over_2": 0.8571987523597597
+    },
+    "psi": {
+      "dominant_k": 3.1285026841998356,
+      "high_k_fraction_k_ge_knyquist_over_2": 0.9393317238876583
+    },
+    "v": {
+      "dominant_k": 3.1285026841998356,
+      "high_k_fraction_k_ge_knyquist_over_2": 0.9965261428668544
+    }
+  }
+}

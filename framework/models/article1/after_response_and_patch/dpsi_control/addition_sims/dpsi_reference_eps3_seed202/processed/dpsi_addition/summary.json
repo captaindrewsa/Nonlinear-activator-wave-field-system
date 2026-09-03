@@ -1,0 +1,45 @@
+{
+  "run_id": "dpsi_reference_eps3_seed202",
+  "run_dir": "D:\\Аспирантура\\Nonlinear-activator-wave-field-system\\framework\\models\\article1\\after_response_and_patch\\dpsi_control\\addition_sims\\dpsi_reference_eps3_seed202",
+  "analysis_name": "dpsi_addition",
+  "valid_for_analysis": true,
+  "solver_status": "completed",
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "solver_max_abs_phi": 6.251951694488525,
+  "solver_max_abs_psi": 8.089503288269043,
+  "solver_max_abs_v": 8.17676067352295,
+  "n_snapshots": 241,
+  "t_min": 441.0,
+  "t_max": 799.99951171875,
+  "time_series_source": "track.csv",
+  "n_track_points": 53334,
+  "grid": {
+    "nx": 160,
+    "ny": 160,
+    "dx": 1.0,
+    "dt": 0.0015,
+    "Lx": 160.0,
+    "Ly": 160.0
+  },
+  "observation_window": {
+    "t0": 479.99699999999996,
+    "t1": 799.995
+  },
+  "a_pp": 7.552637815475464,
+  "phi_max_window": 4.026776313781738,
+  "frequency": 0.16249492203383423,
+  "period": 6.154038461532865,
+  "r_fft": 4596986683249.4,
+  "fft_significant": true,
+  "regime_label": "breathing",
+  "classification_parameters": {
+    "collapse_offset": 0.3,
+    "amplitude_threshold": 0.15,
+    "fft_prominence": 5.0
+  },
+  "tail_fit": {},
+  "threshold_sweep_rows": 0,
+  "two_spot_rows": 0
+}

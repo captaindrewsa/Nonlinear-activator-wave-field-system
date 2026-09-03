@@ -1,0 +1,23 @@
+{
+  "run_id": "dpsi_resolved_0010",
+  "status": "completed",
+  "t_total_requested": 800.0,
+  "t_total_reached": 799.9995,
+  "last_step": 533333,
+  "dt": 0.0015,
+  "dx": 1.0,
+  "monitor_every": 10,
+  "_n_snaps": 240,
+  "wallsec": 377.0,
+  "finalmass": 72,
+  "terminated_early": false,
+  "failure_reason": null,
+  "failure_step": null,
+  "failure_time": null,
+  "max_abs_phi": 6.169672012329102,
+  "max_abs_psi": 8.3009033203125,
+  "max_abs_v": 8.686789512634277,
+  "peak_abs_phi": 6.169658184051514,
+  "peak_abs_psi": 8.300860404968262,
+  "peak_abs_v": 8.68668270111084
+}
