@@ -1,5 +1,5 @@
 {
-  "run_id": "fourier_cn_dt15e4_dx1",
+  "run_id": "a1_dt_1p5e_3",
   "solver": "fourier_cn",
   "spatial_discretisation": "Fourier pseudospectral",
   "wave_time_integrator": "Crank-Nicolson",
@@ -12,7 +12,7 @@
   "dx": 1.0,
   "monitor_every": 1,
   "_n_snaps": 167,
-  "wallsec": 281.531,
+  "wallsec": 120.083,
   "finalmass": 12791,
   "terminated_early": false,
   "failure_reason": null,

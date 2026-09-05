@@ -1,0 +1,65 @@
+{
+  "eps": 3.0,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 160,
+  "ny": 160,
+  "dx": 1.0,
+  "boundary": "periodic",
+  "dt": 0.0015,
+  "t_total": 50.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 80.0,
+        "cy": 80.0,
+        "radius": 8.0,
+        "amp": null,
+        "shape": "tanh_disk",
+        "phase_v": 0.0,
+        "interface_width": 1.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 42,
+    "noise_lowpass": 0.0,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 200,
+    "t_start": 0.0,
+    "t_stop": 50.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": 180,
+    "labels_save": []
+  },
+  "out_dir": ".\\models\\article2\\series_a",
+  "monitor_every": 1,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "check_nonfinite": true,
+  "abort_on_instability": true,
+  "max_abs_phi": 1000000.0,
+  "max_abs_psi": 1000000.0,
+  "max_abs_v": 1000000.0,
+  "run_id": "a1_dt_1p5e_3",
+  "tags": [
+    "fourier_cn",
+    "series_a",
+    "a1_time_refinement",
+    "dx_1",
+    "dt_1p5e_3"
+  ]
+}

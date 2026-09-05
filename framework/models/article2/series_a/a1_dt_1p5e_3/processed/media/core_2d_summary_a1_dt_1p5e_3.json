@@ -1,0 +1,17 @@
+{
+  "run_id": "a1_dt_1p5e_3",
+  "run_dir": "C:\\Users\\VlasovA\\Desktop\\Аспирантура\\Materials for article\\framework\\models\\article2\\series_a\\a1_dt_1p5e_3",
+  "n_frames": 168,
+  "t_min": 0.0,
+  "t_max": 49.9995,
+  "area_mean": 39.30357142857143,
+  "area_max": 245.0,
+  "r_eff_mean": 2.636650679728053,
+  "phi_core_max": 53.65754318237305,
+  "phi_global_max": 1288.9610595703125,
+  "n_components_max": 12737,
+  "source_counts": {
+    "threshold": 168,
+    "fallback-max": 0
+  }
+}

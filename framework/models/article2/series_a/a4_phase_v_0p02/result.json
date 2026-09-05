@@ -1,5 +1,5 @@
 {
-  "run_id": "fourier_cn_dt15e4_dx1",
+  "run_id": "a4_phase_v_0p02",
   "solver": "fourier_cn",
   "spatial_discretisation": "Fourier pseudospectral",
   "wave_time_integrator": "Crank-Nicolson",
@@ -12,17 +12,17 @@
   "dx": 1.0,
   "monitor_every": 1,
   "_n_snaps": 167,
-  "wallsec": 281.531,
-  "finalmass": 12791,
+  "wallsec": 197.644,
+  "finalmass": 12681,
   "terminated_early": false,
   "failure_reason": null,
   "failure_step": null,
   "failure_time": null,
   "failure_meta": {},
-  "max_abs_phi": 1302.4687110687255,
-  "max_abs_psi": 2911.0510276928476,
-  "max_abs_v": 6124.455675888416,
-  "peak_abs_phi": 1298.2233674414797,
-  "peak_abs_psi": 2911.0510276928476,
-  "peak_abs_v": 6124.455675888416
+  "max_abs_phi": 1206.3082561822348,
+  "max_abs_psi": 2971.173940568986,
+  "max_abs_v": 5714.692220813748,
+  "peak_abs_phi": 1206.3082561822348,
+  "peak_abs_psi": 2971.173940568986,
+  "peak_abs_v": 5714.692220813748
 }
