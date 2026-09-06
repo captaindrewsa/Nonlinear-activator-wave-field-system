@@ -1,0 +1,68 @@
+{
+  "eps": 3.0,
+  "h_bg": 0.533,
+  "D_psi": 0.0,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 160,
+  "ny": 160,
+  "dx": 0.25,
+  "boundary": "periodic",
+  "dt": 0.000375,
+  "t_total": 20.0,
+  "attractors": [],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [
+      {
+        "cx": 80.0,
+        "cy": 80.0,
+        "radius": 16.0,
+        "amp": null,
+        "shape": "tanh_disk",
+        "phase_v": 0.0,
+        "interface_width": 4.0
+      }
+    ],
+    "noise_amplitude": 0.0,
+    "noise_seed": 42,
+    "noise_lowpass": 0.0,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 800,
+    "t_start": 0.0,
+    "t_stop": 20.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": 140,
+    "labels_save": []
+  },
+  "out_dir": "./models/article2/v_bound_mechanism_series_AE",
+  "monitor_every": 5,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "check_nonfinite": true,
+  "abort_on_instability": true,
+  "max_abs_phi": 1000000.0,
+  "max_abs_psi": 1000000.0,
+  "max_abs_v": 1000000.0,
+  "run_id": "C_interface_width_4p0",
+  "tags": [
+    "series_C",
+    "interface_width_sweep",
+    "width_4p0",
+    "dx_0p25",
+    "dealias_0p5"
+  ],
+  "phi_heun": true,
+  "dealias": true,
+  "dealias_fraction": 0.5
+}
