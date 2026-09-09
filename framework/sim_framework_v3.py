@@ -32,9 +32,22 @@ static in space) is treated explicitly via a 2nd-order Adams-Bashforth
 Per Fourier mode k, the linear system for (phi_hat, psi_hat, v_hat) is a
 3x3 constant-coefficient linear ODE:
 
-    d/dt [phi]   [ -k^2*Dphi_lin      1        0    ] [phi]   [M(phi)+h]
-         [psi] = [   0                0        1    ] [psi] + [   0    ]
-         [v  ]   [ -k^2               0      -eps   ] [v  ]   [   0    ]
+    d/dt [phi]   [ -k^2*Dphi_lin      1          0     ] [phi]   [M(phi)+h]
+         [psi] = [   0                0          1     ] [psi] + [   0    ]
+         [v  ]   [ -k^2            -D_psi*k^2  -eps    ] [v  ]   [   0    ]
+
+v3.1 fix (this file): the (3,2) entry -D_psi*k^2, coming from the
+D_psi*Delta(psi) term in the reference model (cnsns_autosoliton_wave,
+Eq. 2 / Eq. 8: d v/dt = D_psi*Laplacian(psi) + Laplacian(phi) - eps*v),
+was missing from m_minus/m_plus in the prior v3 revision. As a result
+D_psi had *no effect at all* on the coupled linear step, regardless of
+its configured value -- confirmed empirically by combined_results.json
+sweeps over D_psi in [1e-4, 1e-1] producing identical failure times and
+track statistics. This revision adds the missing coupling term and
+also reports, per run, the analytical Routh-Hurwitz critical wavenumber
+k_c(eps, D_psi) and the D_psi stability bound (1+eps)/eps derived in
+cnsns_autosoliton_wave.pdf Sec. 3.2 (Eqs. 23-30), logged at start and
+written into result.json for direct numerical-vs-analytical comparison.
 
 Note: in the original model phi has no diffusion of its own (Dphi_lin=0);
 phi's spatial coupling enters only through the reaction-diffusion term
@@ -426,9 +439,13 @@ class FourierImexStepperV3:
 
         if torch.any(gamma_field != 0):
             raise ValueError(
-                "Spatially varying gamma_field is not supported by the "
-                "fully coupled Fourier-IMEX linear step. Set gamma_bg=0 "
-                "and use no sink attractors for this solver."
+                "The reference model (cnsns_autosoliton_wave, Eq. 2) has a "
+                "single spatially uniform wave-damping coefficient eps; it "
+                "does not define a spatially varying damping/sink term. "
+                "Set gamma_bg=0 and use no 'sink' attractors so the model "
+                "matches Eqs. (1)-(2). A spatially varying damping term "
+                "would be a distinct model extension, not the one derived "
+                "in the reference paper."
             )
 
         self.cfg = cfg
@@ -455,7 +472,25 @@ class FourierImexStepperV3:
         self.dt_cfl_ratio = self.dt / cfg.dx
 
         eps = float(cfg.eps)
+        d_psi = float(cfg.D_psi)
         k2 = self.k2  # (nx, ny) real tensor
+
+        # ── Linear stability diagnostics (cnsns_autosoliton_wave, Sec. 3) ──
+        # a = M'(phi0) at the background state used to initialise phi;
+        # Routh-Hurwitz cubic a1=eps-a, a2=D_psi*k^2-a*eps, a3=k^2*(1-a*D_psi)
+        # gives k_c^2 = eps*(1+eps) / (1+eps-D_psi*eps) for a ~= -1 (Eq. 29-30).
+        phi0_ref = cfg.init.phi_background if cfg.init.phi_background is not None else cfg.phi_lo
+        a_lin = self._linearised_reaction_slope(phi0_ref)
+        self.a_lin = a_lin
+        denom = 1.0 + eps - d_psi * eps
+        if denom > 0.0:
+            self.k_c2 = eps * (1.0 + eps) / denom
+            self.k_c = float(np.sqrt(self.k_c2))
+        else:
+            self.k_c2 = float("inf")
+            self.k_c = float("inf")
+        self.dpsi_stability_bound = (1.0 + eps) / eps if eps > 0 else float("inf")
+        self.dpsi_within_stability_bound = bool(d_psi < self.dpsi_stability_bound)
 
         # Complex dtype matching self.dtype precision
         cdtype = torch.complex128 if self.dtype == torch.float64 else torch.complex64
@@ -464,14 +499,23 @@ class FourierImexStepperV3:
         one = torch.ones_like(k2)
         zero = torch.zeros_like(k2)
 
-        # A(k) = [[0, 1, 0], [0, 0, 1], [-k2, 0, -eps]]
+        # Model (cnsns_autosoliton_wave, Eqs. 1-2 / 6-8):
+        #   d phi/dt = M(phi) + h + psi
+        #   d psi/dt = v
+        #   d v/dt   = D_psi * Laplacian(psi) + Laplacian(phi) - eps * v
+        # In Fourier space Laplacian -> -k^2, giving the linear operator
+        #   A(k) = [[ 0,          1,         0   ],
+        #           [ 0,          0,         1   ],
+        #           [-k^2,  -D_psi*k^2,     -eps ]]
+        # (the (3,2) entry -D_psi*k^2 was missing previously, so D_psi
+        #  had no effect on the coupled linear step.)
         # M_minus = I - dt/2 * A   (to invert)
         # M_plus  = I + dt/2 * A   (applied to u^n)
         m_minus = torch.stack(
             [
                 torch.stack([one, -dt2 * one, zero], dim=-1),
                 torch.stack([zero, one, -dt2 * one], dim=-1),
-                torch.stack([dt2 * k2, zero, one + dt2 * eps * one], dim=-1),
+                torch.stack([dt2 * k2, dt2 * d_psi * k2, one + dt2 * eps * one], dim=-1),
             ],
             dim=-2,
         ).to(cdtype)  # (nx, ny, 3, 3)
@@ -480,7 +524,7 @@ class FourierImexStepperV3:
             [
                 torch.stack([one, dt2 * one, zero], dim=-1),
                 torch.stack([zero, one, dt2 * one], dim=-1),
-                torch.stack([-dt2 * k2, zero, one - dt2 * eps * one], dim=-1),
+                torch.stack([-dt2 * k2, -dt2 * d_psi * k2, one - dt2 * eps * one], dim=-1),
             ],
             dim=-2,
         ).to(cdtype)  # (nx, ny, 3, 3)
@@ -493,6 +537,13 @@ class FourierImexStepperV3:
         # previous-step nonlinear term (for AB2); None until first step done
         self._n_prev_hat: Optional[torch.Tensor] = None
         self.bootstrap_mode = str(cfg.ab2_bootstrap)
+
+    def _linearised_reaction_slope(self, phi0: float) -> float:
+        """Numerical a = M'(phi0) via central difference (cnsns_autosoliton_wave, Eq. 18)."""
+        h = 1.0e-5
+        phi0_t = torch.tensor([phi0 + h, phi0 - h], dtype=self.dtype, device=self.device)
+        m_val = nonlinear_m(phi0_t, self.cfg.kappa, self.cfg.theta1, self.cfg.theta2)
+        return float((m_val[0] - m_val[1]) / (2.0 * h))
 
     @staticmethod
     def _batched_inverse_3x3(m: torch.Tensor) -> torch.Tensor:
@@ -785,6 +836,12 @@ class Simulator:
             "dealiasing": self.cfg.dealias,
             "dealias_fraction": self.cfg.dealias_fraction,
             "dt_cfl_ratio": self.stepper.dt_cfl_ratio,
+            # Linear stability diagnostics (cnsns_autosoliton_wave, Sec. 3)
+            "linear_a": self.stepper.a_lin,
+            "linear_k_c": self.stepper.k_c,
+            "linear_k_c2": self.stepper.k_c2,
+            "linear_dpsi_stability_bound": self.stepper.dpsi_stability_bound,
+            "linear_dpsi_within_stability_bound": self.stepper.dpsi_within_stability_bound,
             "status": self.status,
             "t_total_requested": float(self.cfg.t_total),
             "t_total_reached": float(last_t),
@@ -830,6 +887,18 @@ class Simulator:
             "%s v3 start | steps=%d nx=%d ny=%d dt=%g dx=%g dealias=%s",
             self.run_id, total_steps, cfg.nx, cfg.ny, cfg.dt, cfg.dx, cfg.dealias,
         )
+        logger.info(
+            "%s v3 linear-stability | a=%.4f k_c=%.4f (k_c^2=%.4f) D_psi_bound=%.4f within_bound=%s",
+            self.run_id, self.stepper.a_lin, self.stepper.k_c, self.stepper.k_c2,
+            self.stepper.dpsi_stability_bound, self.stepper.dpsi_within_stability_bound,
+        )
+        if not self.stepper.dpsi_within_stability_bound:
+            logger.warning(
+                "%s: D_psi=%.4g exceeds the Routh-Hurwitz bound (1+eps)/eps=%.4g "
+                "for the homogeneous background (cnsns_autosoliton_wave, Eq. 28); "
+                "the background state used for k_c is not linearly stable at any k.",
+                self.run_id, cfg.D_psi, self.stepper.dpsi_stability_bound,
+            )
 
         for step in range(total_steps + 1):
             t_value = step * cfg.dt

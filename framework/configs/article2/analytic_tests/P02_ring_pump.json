@@ -1,0 +1,60 @@
+{
+  "eps": 3.0,
+  "h_bg": 0.25,
+  "D_psi": 0.01,
+  "phi_lo": 0.533,
+  "phi_hi": 3.9766096853487105,
+  "kappa": 10.0,
+  "theta1": 4.0,
+  "theta2": 16.0,
+  "nx": 160,
+  "ny": 160,
+  "dx": 0.25,
+  "boundary": "periodic",
+  "dt": 0.000375,
+  "t_total": 60.0,
+  "attractors": [
+    {
+      "kind": "pump",
+      "cx": 80.0,
+      "cy": 80.0,
+      "strength": 0.08,
+      "sigma": 8.0,
+      "profile": "ring",
+      "ring_r": 18.0,
+      "ring_w": 3.0
+    }
+  ],
+  "gamma_bg": 0.0,
+  "h_custom": null,
+  "gamma_custom": null,
+  "init": {
+    "npz_path": null,
+    "spots": [],
+    "noise_amplitude": 0.01,
+    "noise_seed": 42,
+    "noise_lowpass": 0.0,
+    "phi_background": 0.533
+  },
+  "snap": {
+    "every_steps": 1000,
+    "t_start": 0.0,
+    "t_stop": 60.0,
+    "save_phi": true,
+    "save_psi": true,
+    "save_v": true,
+    "max_snaps": 220,
+    "labels_save": []
+  },
+  "out_dir": "./models/article2/analytics_tests",
+  "monitor_every": 5,
+  "t_warm": 0.0,
+  "seed_n_snaps": 16,
+  "check_nonfinite": true,
+  "abort_on_instability": true,
+  "max_abs_phi": 1000000.0,
+  "max_abs_psi": 1000000.0,
+  "max_abs_v": 1000000.0,
+  "run_id": "P02_ring_pump",
+  "tags": ["pump", "structure_nucleation", "ring_source"]
+}
