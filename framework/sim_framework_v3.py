@@ -1,96 +1,11 @@
 #!/usr/bin/env python3
-"""
-sim_framework_fourier_imex_v3.py
-=================================
-Fully coupled Fourier-IMEX solver for the (phi, psi, v) system.
-
-Motivation
-----------
-v1 (sim_framework_fourier_cn.py) and v2 (sim_framework_fourier_cn.py with
-phi_heun/dealias) both advance phi and the wave pair (psi, v) with a
-*split* step: the wave pair is updated first from phi^n via Crank-Nicolson,
-then phi is advanced using psi^n (and, in v2, psi^{n+1} for a Heun
-correction). This leaves the phi -> v (via Delta phi) and psi -> phi (via
-the psi source term) couplings partially explicit even though each
-sub-system is unconditionally stable on its own. Empirically this produced
-grid-dependent blow-up (v_bound) that did not disappear when dt was
-shrunk proportionally to dx (dt/dx held fixed): dx=0.5 completed cleanly
-while dx=0.25 diverged at t~12 with the same dt/dx ratio.
-
-v3 removes this splitting. All linear terms in the system
-
-    d phi / dt = Delta phi_lin_placeholder ... (see below) + psi + h + M(phi)
-    d psi / dt = v
-    d v   / dt = D_psi * Delta psi + Delta phi - eps * v
-
-are treated together, mode-by-mode in Fourier space, using Crank-Nicolson
-(trapezoidal rule) for the full linear operator. Only the nonlinear
-reaction M(phi) (and, if present, the external forcing h which is already
-static in space) is treated explicitly via a 2nd-order Adams-Bashforth
-(AB2) predictor, with an IMEX-Euler bootstrap for the first step.
-
-Per Fourier mode k, the linear system for (phi_hat, psi_hat, v_hat) is a
-3x3 constant-coefficient linear ODE:
-
-    d/dt [phi]   [ -k^2*Dphi_lin      1          0     ] [phi]   [M(phi)+h]
-         [psi] = [   0                0          1     ] [psi] + [   0    ]
-         [v  ]   [ -k^2            -D_psi*k^2  -eps    ] [v  ]   [   0    ]
-
-v3.1 fix (this file): the (3,2) entry -D_psi*k^2, coming from the
-D_psi*Delta(psi) term in the reference model (cnsns_autosoliton_wave,
-Eq. 2 / Eq. 8: d v/dt = D_psi*Laplacian(psi) + Laplacian(phi) - eps*v),
-was missing from m_minus/m_plus in the prior v3 revision. As a result
-D_psi had *no effect at all* on the coupled linear step, regardless of
-its configured value -- confirmed empirically by combined_results.json
-sweeps over D_psi in [1e-4, 1e-1] producing identical failure times and
-track statistics. This revision adds the missing coupling term and
-also reports, per run, the analytical Routh-Hurwitz critical wavenumber
-k_c(eps, D_psi) and the D_psi stability bound (1+eps)/eps derived in
-cnsns_autosoliton_wave.pdf Sec. 3.2 (Eqs. 23-30), logged at start and
-written into result.json for direct numerical-vs-analytical comparison.
-
-Note: in the original model phi has no diffusion of its own (Dphi_lin=0);
-phi's spatial coupling enters only through the reaction-diffusion term
-inside M(phi) is NOT diffusive -- the only spatial operator on phi in the
-original v1/v2 stepper is the Delta phi appearing in the v-equation
-(wave forcing), and phi itself is only coupled locally + through the
-explicit psi source. We keep this structure (Dphi_lin=0 by default) so
-that v3 reduces to the same PDE as v1/v2, but now solves the (psi,v)
-part *and* the psi-coupling into phi jointly and implicitly, rather than
-splitting the update into two sequential half-steps.
-
-Crank-Nicolson trapezoidal rule applied to the full 3x3 linear system per
-mode gives, with A the mode's linear operator matrix:
-
-    (I - dt/2 * A) u_hat^{n+1} = (I + dt/2 * A) u_hat^n + dt * N_hat
-
-where N_hat is the (dealiased) FFT of the explicit nonlinear/forcing term
-[M(phi)+h, 0, 0], extrapolated to the half-step via AB2:
-    N* = 1.5*N^n - 0.5*N^{n-1}   (n >= 1)
-    N* = N^n                     (n == 0, bootstrap)
-
-(I - dt/2 * A) is a small 3x3 complex matrix per mode; it is inverted
-once per run (the mode grid is static) and reused every step, so the
-extra cost over the split CN scheme is a handful of extra FFTs and a
-batched 3x3 solve (closed-form, no torch.linalg needed).
-
-Config backward compatibility
-------------------------------
-All SimConfig field names from v1/v2 are unchanged. New optional fields,
-all with defaults matching v1/v2 default *physics* (v3 numerics is always
-on when this file is used -- there is no v1-Euler fallback for the
-coupled step, since decoupling the modes defeats the purpose of v3):
-
-    dealias            (bool,  default True)   -- 2/3-rule dealiasing
-    dealias_fraction   (float, default 2/3)    -- kept for compat with v2 configs
-    phi_heun           (bool,  default True)   -- IGNORED by v3 (kept so old
-                                                    configs don't error out);
-                                                    v3 always uses the fully
-                                                    coupled IMEX-CN/AB2 step.
-    ab2_bootstrap      (str,   default "imex_euler") -- how step 0 is done
-
-Existing config.json files produced for v1/v2 runs load and run unchanged
-under v3; only the internal time-stepping differs.
+"""Fourier IMEX v3.2: backward-compatible M0/M1 framework.
+M1: phi_t=d Lap(phi)+M(phi)+h; psi_t=v;
+tau v_t=Lap(phi)+D_psi Lap(psi)-mu psi-eps v+eta Lap(v).
+Default new coefficients preserve legacy physics. Existing API and CN/AB2 remain.
+Geometry defaults to grid units; opt in with coordinate_units='physical'.
+Reaction is evaluated on the base grid, then truncated (not exact dealiasing).
+NPZ initialization is a field restart, not a history-preserving AB2 restart.
 """
 from __future__ import annotations
 
@@ -119,7 +34,7 @@ except Exception:
 
 logger = logging.getLogger("sim_framework_fourier_imex_v3")
 
-SOLVER_VERSION = "fourier_imex_v3"
+SOLVER_VERSION = "fourier_imex_v3.2_m1"
 
 kappa_default = 10.0
 theta_1_default = 4.0
@@ -236,6 +151,37 @@ class SimConfig:
     # ── v3-only optional field ──
     ab2_bootstrap: str = "imex_euler"  # how the first step (no history) is handled
 
+    # Appended fields preserve positional constructor compatibility.
+    d: float = 0.0
+    mu: float = 0.0
+    eta: float = 0.0
+    tau: float = 1.0
+    model_id: str = "auto"
+    coordinate_units: str = "grid"
+    strict_config: bool = False
+
+    def __post_init__(self):
+        if self.tau <= 0 or self.dt <= 0 or self.dx <= 0:
+            raise ValueError("tau, dt and dx must be positive")
+        if min(self.d, self.mu, self.eta, self.D_psi, self.eps) < 0:
+            raise ValueError("M1 requires nonnegative d, mu, eta, D_psi, eps")
+        if self.nx < 2 or self.ny < 2:
+            raise ValueError("nx and ny must be >= 2")
+        if not 0 < self.dealias_fraction <= 1:
+            raise ValueError("dealias_fraction must be in (0,1]")
+        if self.coordinate_units not in ("grid", "physical"):
+            raise ValueError("coordinate_units must be grid or physical")
+        if self.ab2_bootstrap != "imex_euler":
+            raise ValueError("Only the legacy CN/source bootstrap 'imex_euler' is implemented")
+        effective = "M0" if (self.d == self.mu == self.eta == 0 and self.tau == 1) else "M1"
+        if self.model_id not in ("auto", "M0", "M1"):
+            raise ValueError("model_id must be auto, M0 or M1")
+        if self.model_id == "M0" and effective != "M0":
+            raise ValueError("M0 is incompatible with nondefault M1 parameters")
+
+    def resolved_model_id(self):
+        return ("M0" if self.d == self.mu == self.eta == 0 and self.tau == 1 else "M1") if self.model_id == "auto" else self.model_id
+
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> "SimConfig":
         payload = copy.deepcopy(data)
@@ -246,6 +192,12 @@ class SimConfig:
         payload["snap"] = SnapshotPolicy.from_dict(payload.get("snap", {}))
         # strip unknown keys so old/newer configs with extra fields don't crash
         known = {f.name for f in SimConfig.__dataclass_fields__.values()}  # type: ignore[attr-defined]
+        unknown = sorted(set(payload) - known)
+        if unknown:
+            message = "Unknown configuration keys: " + ", ".join(unknown)
+            if payload.get("strict_config", False):
+                raise ValueError(message)
+            logger.warning(message + " (ignored for backward compatibility)")
         payload = {k: v for k, v in payload.items() if k in known}
         return SimConfig(**payload)
 
@@ -319,6 +271,13 @@ def ring_2d(nx, ny, cx, cy, ring_r, ring_w, device, dtype):
 
 
 def build_spatial_fields(cfg: SimConfig, device, dtype):
+    if cfg.coordinate_units == "physical":
+        cfg = copy.deepcopy(cfg)
+        cfg.coordinate_units = "grid"
+        for obj in list(cfg.attractors) + list(cfg.init.spots):
+            for key in ("cx", "cy", "sigma", "ring_r", "ring_w", "radius", "interface_width"):
+                if hasattr(obj, key):
+                    setattr(obj, key, getattr(obj, key) / cfg.dx)
     h_field = torch.full((cfg.nx, cfg.ny), cfg.h_bg, dtype=dtype, device=device)
     gamma_field = torch.full((cfg.nx, cfg.ny), cfg.gamma_bg, dtype=dtype, device=device)
 
@@ -354,6 +313,13 @@ def build_spatial_fields(cfg: SimConfig, device, dtype):
 
 
 def build_initial_state(cfg: SimConfig, device, dtype):
+    if cfg.coordinate_units == "physical":
+        cfg = copy.deepcopy(cfg)
+        cfg.coordinate_units = "grid"
+        for obj in list(cfg.attractors) + list(cfg.init.spots):
+            for key in ("cx", "cy", "sigma", "ring_r", "ring_w", "radius", "interface_width"):
+                if hasattr(obj, key):
+                    setattr(obj, key, getattr(obj, key) / cfg.dx)
     if cfg.init.npz_path:
         p = Path(cfg.init.npz_path)
         if p.exists():
@@ -475,22 +441,33 @@ class FourierImexStepperV3:
         d_psi = float(cfg.D_psi)
         k2 = self.k2  # (nx, ny) real tensor
 
-        # ── Linear stability diagnostics (cnsns_autosoliton_wave, Sec. 3) ──
-        # a = M'(phi0) at the background state used to initialise phi;
-        # Routh-Hurwitz cubic a1=eps-a, a2=D_psi*k^2-a*eps, a3=k^2*(1-a*D_psi)
-        # gives k_c^2 = eps*(1+eps) / (1+eps-D_psi*eps) for a ~= -1 (Eq. 29-30).
         phi0_ref = cfg.init.phi_background if cfg.init.phi_background is not None else cfg.phi_lo
-        a_lin = self._linearised_reaction_slope(phi0_ref)
-        self.a_lin = a_lin
-        denom = 1.0 + eps - d_psi * eps
-        if denom > 0.0:
-            self.k_c2 = eps * (1.0 + eps) / denom
-            self.k_c = float(np.sqrt(self.k_c2))
-        else:
-            self.k_c2 = float("inf")
-            self.k_c = float("inf")
-        self.dpsi_stability_bound = (1.0 + eps) / eps if eps > 0 else float("inf")
-        self.dpsi_within_stability_bound = bool(d_psi < self.dpsi_stability_bound)
+        self.a_lin = self._linearised_reaction_slope(phi0_ref)
+        # Legacy scalar threshold is valid only for a=-1, tau=1, d=mu=eta=0.
+        applicable = (abs(self.a_lin + 1) < 1e-6 and cfg.tau == 1 and cfg.d == cfg.mu == cfg.eta == 0)
+        self.dpsi_stability_bound = 1.0 / eps if applicable and eps > 0 else float("nan")
+        self.dpsi_within_stability_bound = True  # retained compatibility field; see full spectrum below
+        denom = 1.0 - eps * d_psi
+        self.k_c2 = (eps * (1 + eps) / denom if denom > 0 else float("inf")) if applicable else float("nan")
+        self.k_c = float(np.sqrt(self.k_c2))
+        q_np = self.k2.detach().cpu().numpy()
+        A = np.zeros(q_np.shape + (3, 3))
+        A[..., 0, 0] = self.a_lin - cfg.d * q_np
+        A[..., 0, 1] = 1
+        A[..., 1, 2] = 1
+        A[..., 2, 0] = -q_np / cfg.tau
+        A[..., 2, 1] = -(cfg.D_psi * q_np + cfg.mu) / cfg.tau
+        A[..., 2, 2] = -(cfg.eps + cfg.eta * q_np) / cfg.tau
+        growth = np.linalg.eigvals(A).real.max(axis=-1)
+        retained = self.dealias_mask.detach().cpu().numpy().astype(bool) if cfg.dealias else np.ones_like(q_np, dtype=bool)
+        self.linear_diagnostics = {
+            "reference_phi": float(phi0_ref), "a": self.a_lin,
+            "interpretation": "Frozen homogeneous coefficients at reference phi; not nonlinear stability proof",
+            "max_growth_retained": float(growth[retained].max()),
+            "max_growth_nonzero_retained": float(growth[retained & (q_np > 0)].max()) if np.any(retained & (q_np > 0)) else None,
+            "max_growth_zero": float(growth[0, 0]),
+            "legacy_threshold_applicable": applicable,
+        }
 
         # Complex dtype matching self.dtype precision
         cdtype = torch.complex128 if self.dtype == torch.float64 else torch.complex64
@@ -513,18 +490,18 @@ class FourierImexStepperV3:
         # M_plus  = I + dt/2 * A   (applied to u^n)
         m_minus = torch.stack(
             [
-                torch.stack([one, -dt2 * one, zero], dim=-1),
+                torch.stack([one + dt2 * cfg.d * k2, -dt2 * one, zero], dim=-1),
                 torch.stack([zero, one, -dt2 * one], dim=-1),
-                torch.stack([dt2 * k2, dt2 * d_psi * k2, one + dt2 * eps * one], dim=-1),
+                torch.stack([dt2 * k2 / cfg.tau, dt2 * (d_psi * k2 + cfg.mu) / cfg.tau, one + dt2 * (eps + cfg.eta * k2) / cfg.tau], dim=-1),
             ],
             dim=-2,
         ).to(cdtype)  # (nx, ny, 3, 3)
 
         m_plus = torch.stack(
             [
-                torch.stack([one, dt2 * one, zero], dim=-1),
+                torch.stack([one - dt2 * cfg.d * k2, dt2 * one, zero], dim=-1),
                 torch.stack([zero, one, dt2 * one], dim=-1),
-                torch.stack([-dt2 * k2, -dt2 * d_psi * k2, one - dt2 * eps * one], dim=-1),
+                torch.stack([-dt2 * k2 / cfg.tau, -dt2 * (d_psi * k2 + cfg.mu) / cfg.tau, one - dt2 * (eps + cfg.eta * k2) / cfg.tau], dim=-1),
             ],
             dim=-2,
         ).to(cdtype)  # (nx, ny, 3, 3)
@@ -798,6 +775,16 @@ class Simulator:
         self.track["total_energy"].append(total_energy)
         self.track["spectral_peak_k"].append(spectral_peak_k)
         self.track["spectral_energy_high"].append(spectral_energy_high)
+        extra = {
+            "phi_min": float(phi_np.min()), "v_mean": float(v_np.mean()),
+            "area_phys_legacy_threshold": float(mass * self.cfg.dx**2),
+            "mean_mode_I": float(self.cfg.tau * v_np.mean() + self.cfg.eps * psi_np.mean()),
+            "mean_mode_I_derivative_expected": float(-self.cfg.mu * psi_np.mean()),
+            "excess_integral_ref": float((phi_np - self.cfg.phi_lo).sum() * self.cfg.dx**2),
+        }
+        for key, value in extra.items():
+            self.track.setdefault(key, []).append(value)
+
 
     def save_snapshot(
         self, phi: torch.Tensor, psi: torch.Tensor, v: torch.Tensor,
@@ -818,6 +805,8 @@ class Simulator:
     def save_track_csv(self) -> None:
         path = self.out_dir / "track.csv"
         keys = list(self.track.keys())
+        if len({len(self.track[k]) for k in keys}) > 1:
+            raise ValueError("Track length mismatch; refusing silent CSV truncation")
         with path.open("w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
             w.writerow(keys)
@@ -829,6 +818,14 @@ class Simulator:
         result = {
             "run_id": self.run_id,
             "solver": SOLVER_VERSION,
+            "model_id": self.cfg.resolved_model_id(),
+            "effective_config": self.cfg.to_dict(),
+            "source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            "linear_diagnostics": self.stepper.linear_diagnostics,
+            "nonlinear_rule": "Pointwise reaction on base grid followed by spectral truncation; not exact dealiasing",
+            "legacy_metric_warning": "mass is cell count; total_energy is a diagnostic, not a proven conserved energy; spectral_peak_k is legacy index",
+            "restart_note": "init.npz_path loads fields only; AB2 history is bootstrapped, not an exact restart",
+
             "spatial_discretisation": "Fourier pseudospectral",
             "time_integrator": "Fully coupled IMEX (Crank-Nicolson linear + AB2 nonlinear)",
             "wave_time_integrator": "Crank-Nicolson (coupled with phi and psi)",
